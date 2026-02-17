@@ -122,38 +122,86 @@
             display: none;
         }
 
-        .hero-cta-wrapper {
+        .floating-btn-wrapper {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
-            background: linear-gradient(180deg, transparent 0%, rgba(15, 15, 30, 0.95) 30%, rgba(15, 15, 30, 0.98) 100%);
-            backdrop-filter: blur(20px);
-            z-index: 100;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 6px;
         }
 
-        .limited-badge {
-            display: inline-block;
-            background: #dc3545;
+        .floating-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .floating-btn .limited-badge {
+            background: rgba(220, 53, 69, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 100, 100, 0.4);
             color: white;
-            padding: 5px 14px;
+            padding: 3px 10px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 8px;
             font-weight: 700;
-            margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            white-space: nowrap;
+            text-align: center;
+            align-self: center;
         }
 
-        @media (max-width: 768px) {
-            .hero-cta-wrapper {
-                padding: 15px;
-            }
+        .floating-buy-btn {
+            background: rgba(255, 107, 53, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 107, 53, 0.7);
+            color: white;
+            padding: 14px 32px;
+            font-size: 17px;
+            font-weight: 800;
+            text-decoration: none;
+            border-radius: 50px;
+            cursor: pointer;
+            white-space: nowrap;
+            box-shadow:
+                0 0 20px rgba(255, 107, 53, 0.3),
+                0 0 60px rgba(255, 107, 53, 0.1),
+                inset 0 0 20px rgba(255, 107, 53, 0.05);
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .floating-buy-btn:hover {
+            background: rgba(255, 107, 53, 0.35);
+            border-color: rgba(255, 107, 53, 1);
+            box-shadow:
+                0 0 30px rgba(255, 107, 53, 0.6),
+                0 0 80px rgba(255, 107, 53, 0.2),
+                inset 0 0 30px rgba(255, 107, 53, 0.1);
+            transform: scale(1.05);
+        }
+
+        .btn-section-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            height: 16px;
+        }
+
+        /* Keep old wrapper hidden */
+        .hero-cta-wrapper {
+            display: none;
         }
 
         .hero h1 {
@@ -1092,6 +1140,15 @@
         </div>
     </section>
 
+    <!-- FLOATING BUY BUTTON -->
+    <div class="floating-btn-wrapper" id="floatingBtn">
+        <div class="floating-btn">
+            <span class="btn-section-label" id="btnSectionLabel"></span>
+            <span class="limited-badge">Limited offer</span>
+            <a href="#buy" class="floating-buy-btn" id="floatingBuyBtn">Buy now for €9.99</a>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer>
         <p>&copy; 2024 Valencia Photo Guide. All rights reserved.</p>
@@ -1165,8 +1222,50 @@
             }
         }
 
-        // Start autoplay
+        // Start carousel autoplay
         startAutoplay();
+
+        // ─── SMART FLOATING BUTTON ───────────────────────────────────
+        const floatingWrapper = document.getElementById('floatingBtn');
+        const btnSectionLabel = document.getElementById('btnSectionLabel');
+        const floatingBuyBtn = document.getElementById('floatingBuyBtn');
+
+        const sections = [
+            { el: document.querySelector('.hero'),            label: '' },
+            { el: document.getElementById('how-it-works'),    label: 'How it works' },
+            { el: document.querySelectorAll('section')[2],    label: 'What you get' },
+            { el: document.querySelectorAll('section')[3],    label: 'Why it\'s useful' },
+            { el: document.querySelectorAll('section')[4],    label: 'Perfect for' },
+            { el: document.getElementById('buy'),             label: 'Get instant access' },
+        ].filter(s => s.el);
+
+        let currentSection = -1;
+
+        function updateButtonOnScroll() {
+            const scrollY = window.scrollY;
+            const viewH = window.innerHeight;
+            const center = scrollY + viewH * 0.5;
+
+            let activeIdx = 0;
+            sections.forEach((s, i) => {
+                if (center >= s.el.offsetTop) activeIdx = i;
+            });
+
+            if (activeIdx === currentSection) return;
+            currentSection = activeIdx;
+
+            // Just update text, no hide/show
+            btnSectionLabel.textContent = sections[activeIdx].label;
+            floatingBuyBtn.textContent = activeIdx === sections.length - 1
+                ? 'Get instant access — €9.99'
+                : 'Buy now for €9.99';
+        }
+
+        // No transform transition — always stay in place
+        floatingWrapper.style.transition = 'none';
+
+        window.addEventListener('scroll', updateButtonOnScroll, { passive: true });
+        updateButtonOnScroll();
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
