@@ -1453,20 +1453,21 @@
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxClose = document.getElementById('lightboxClose');
 
-        // Add click handlers to all carousel images
-        function initLightbox() {
-            document.querySelectorAll('.carousel-slide img').forEach(img => {
-                img.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    lightboxImg.src = this.src; // Use 'this' to get clicked image
-                    lightbox.classList.add('active');
-                    stopAutoplay(); // Pause carousel when viewing image
-                });
-            });
-        }
-
-        // Initialize lightbox
-        initLightbox();
+        // Add click handlers to all carousel images using event delegation
+        document.querySelector('.carousel').addEventListener('click', function(e) {
+            const clickedImg = e.target.closest('img');
+            if (clickedImg && clickedImg.parentElement.classList.contains('split-side')) {
+                // Clicked on split-screen image
+                lightboxImg.src = clickedImg.src;
+                lightbox.classList.add('active');
+                stopAutoplay();
+            } else if (clickedImg && clickedImg.parentElement.classList.contains('carousel-slide')) {
+                // Clicked on full-screen image
+                lightboxImg.src = clickedImg.src;
+                lightbox.classList.add('active');
+                stopAutoplay();
+            }
+        });
 
         // Close lightbox
         function closeLightbox() {
