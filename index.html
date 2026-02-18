@@ -53,6 +53,26 @@
             opacity: 1;
         }
 
+        /* Desktop: show split-screen, hide mobile slides */
+        .mobile-only {
+            display: none;
+        }
+
+        .desktop-only {
+            display: block;
+        }
+
+        /* Mobile: hide split-screen, show full-screen slides */
+        @media (max-width: 768px) {
+            .desktop-only {
+                display: none;
+            }
+
+            .mobile-only {
+                display: block;
+            }
+        }
+
         .carousel-slide img {
             width: 100%;
             height: 100%;
@@ -1029,44 +1049,85 @@
         </div>
 
         <div class="carousel">
-            <!-- Slide 1 - Bad angle -->
-            <div class="carousel-slide active">
+            <!-- Desktop Split-Screen Slides (hidden on mobile) -->
+            <div class="carousel-slide active desktop-only">
+                <div class="split-container">
+                    <div class="split-side without">
+                        <img src="images/bad1.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="split-label">❌ Without the guide</div>
+                    </div>
+                    <div class="split-side with">
+                        <img src="images/good1.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="split-label">✅ With the guide</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-slide desktop-only">
+                <div class="split-container">
+                    <div class="split-side without">
+                        <img src="images/bad2.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="split-label">❌ Without the guide</div>
+                    </div>
+                    <div class="split-side with">
+                        <img src="images/good2.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="split-label">✅ With the guide</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-slide desktop-only">
+                <div class="split-container">
+                    <div class="split-side without">
+                        <img src="images/bad3.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="split-label">❌ Without the guide</div>
+                    </div>
+                    <div class="split-side with">
+                        <img src="images/good3.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="split-label">✅ With the guide</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-slide desktop-only">
+                <img src="images/map.jpg" alt="Valencia photo spots map" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="split-label" style="left: 50%; transform: translateX(-50%); top: 20px;">
+                    📍 All photo spots
+                </div>
+            </div>
+
+            <!-- Mobile Full-Screen Slides (hidden on desktop) -->
+            <div class="carousel-slide active mobile-only">
                 <img src="images/bad1.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="split-label">❌ Without the guide</div>
             </div>
 
-            <!-- Slide 2 - Good angle -->
-            <div class="carousel-slide">
+            <div class="carousel-slide mobile-only">
                 <img src="images/good1.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="split-label">✅ With the guide</div>
             </div>
 
-            <!-- Slide 3 - Bad angle -->
-            <div class="carousel-slide">
+            <div class="carousel-slide mobile-only">
                 <img src="images/bad2.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="split-label">❌ Without the guide</div>
             </div>
 
-            <!-- Slide 4 - Good angle -->
-            <div class="carousel-slide">
+            <div class="carousel-slide mobile-only">
                 <img src="images/good2.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="split-label">✅ With the guide</div>
             </div>
 
-            <!-- Slide 5 - Bad angle -->
-            <div class="carousel-slide">
+            <div class="carousel-slide mobile-only">
                 <img src="images/bad3.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="split-label">❌ Without the guide</div>
             </div>
 
-            <!-- Slide 6 - Good angle -->
-            <div class="carousel-slide">
+            <div class="carousel-slide mobile-only">
                 <img src="images/good3.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="split-label">✅ With the guide</div>
             </div>
 
-            <!-- Slide 7 - Map of all locations -->
-            <div class="carousel-slide">
+            <div class="carousel-slide mobile-only">
                 <img src="images/map.jpg" alt="Valencia photo spots map" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="split-label" style="left: 50%; transform: translateX(-50%); top: 20px;">
                     📍 All photo spots
@@ -1075,13 +1136,20 @@
 
             <!-- Carousel Dots -->
             <div class="carousel-dots">
-                <span class="dot active" data-slide="0"></span>
-                <span class="dot" data-slide="1"></span>
-                <span class="dot" data-slide="2"></span>
-                <span class="dot" data-slide="3"></span>
-                <span class="dot" data-slide="4"></span>
-                <span class="dot" data-slide="5"></span>
-                <span class="dot" data-slide="6"></span>
+                <!-- Desktop dots (4 slides) -->
+                <span class="dot active desktop-only" data-slide="0"></span>
+                <span class="dot desktop-only" data-slide="1"></span>
+                <span class="dot desktop-only" data-slide="2"></span>
+                <span class="dot desktop-only" data-slide="3"></span>
+                
+                <!-- Mobile dots (7 slides) -->
+                <span class="dot active mobile-only" data-slide="0"></span>
+                <span class="dot mobile-only" data-slide="1"></span>
+                <span class="dot mobile-only" data-slide="2"></span>
+                <span class="dot mobile-only" data-slide="3"></span>
+                <span class="dot mobile-only" data-slide="4"></span>
+                <span class="dot mobile-only" data-slide="5"></span>
+                <span class="dot mobile-only" data-slide="6"></span>
             </div>
 
             <!-- Navigation Arrows -->
@@ -1266,28 +1334,45 @@
     <script>
         // Carousel functionality
         let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.dot');
         let autoplayInterval;
 
+        // Get only visible slides based on screen size
+        function getVisibleSlides() {
+            const isMobile = window.innerWidth <= 768;
+            const selector = isMobile ? '.carousel-slide.mobile-only' : '.carousel-slide.desktop-only';
+            return document.querySelectorAll(selector);
+        }
+
+        function getVisibleDots() {
+            const isMobile = window.innerWidth <= 768;
+            const selector = isMobile ? '.dot.mobile-only' : '.dot.desktop-only';
+            return document.querySelectorAll(selector);
+        }
+
         function showSlide(index) {
+            const slides = getVisibleSlides();
+            const dots = getVisibleDots();
+            
             slides.forEach((slide, i) => {
                 slide.classList.remove('active');
-                dots[i].classList.remove('active');
+                if (dots[i]) dots[i].classList.remove('active');
             });
             
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
+            if (slides[index]) {
+                slides[index].classList.add('active');
+                if (dots[index]) dots[index].classList.add('active');
+            }
             currentSlide = index;
         }
 
         function nextSlide() {
+            const slides = getVisibleSlides();
             let next = (currentSlide + 1) % slides.length;
             showSlide(next);
         }
 
         function startAutoplay() {
-            autoplayInterval = setInterval(nextSlide, 5000); // 5 seconds delay
+            autoplayInterval = setInterval(nextSlide, 7000); // 7 seconds delay
         }
 
         function stopAutoplay() {
@@ -1295,10 +1380,12 @@
         }
 
         // Dot navigation
-        dots.forEach((dot, index) => {
+        document.querySelectorAll('.dot').forEach((dot, index) => {
             dot.addEventListener('click', () => {
                 stopAutoplay();
-                showSlide(index);
+                // Get the data-slide attribute
+                const slideIndex = parseInt(dot.getAttribute('data-slide'));
+                showSlide(slideIndex);
                 startAutoplay();
             });
         });
@@ -1306,6 +1393,7 @@
         // Arrow navigation
         document.getElementById('prevBtn').addEventListener('click', () => {
             stopAutoplay();
+            const slides = getVisibleSlides();
             let prev = (currentSlide - 1 + slides.length) % slides.length;
             showSlide(prev);
             startAutoplay();
@@ -1338,11 +1426,24 @@
             }
             if (touchEndX > touchStartX + 50) {
                 stopAutoplay();
+                const slides = getVisibleSlides();
                 let prev = (currentSlide - 1 + slides.length) % slides.length;
                 showSlide(prev);
                 startAutoplay();
             }
         }
+
+        // Reset carousel on resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                stopAutoplay();
+                currentSlide = 0;
+                showSlide(0);
+                startAutoplay();
+            }, 250);
+        });
 
         // Start carousel autoplay
         startAutoplay();
@@ -1353,14 +1454,19 @@
         const lightboxClose = document.getElementById('lightboxClose');
 
         // Add click handlers to all carousel images
-        document.querySelectorAll('.carousel-slide img').forEach(img => {
-            img.addEventListener('click', (e) => {
-                e.stopPropagation();
-                lightboxImg.src = img.src;
-                lightbox.classList.add('active');
-                stopAutoplay(); // Pause carousel when viewing image
+        function initLightbox() {
+            document.querySelectorAll('.carousel-slide img').forEach(img => {
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    lightboxImg.src = this.src; // Use 'this' to get clicked image
+                    lightbox.classList.add('active');
+                    stopAutoplay(); // Pause carousel when viewing image
+                });
             });
-        });
+        }
+
+        // Initialize lightbox
+        initLightbox();
 
         // Close lightbox
         function closeLightbox() {
