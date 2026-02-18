@@ -746,6 +746,55 @@
             }
         }
 
+        /* Lightbox for image zoom */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95vh;
+            object-fit: contain;
+            box-shadow: 0 0 50px rgba(255, 107, 53, 0.3);
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            font-weight: 300;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: #FF6B35;
+            transform: rotate(90deg);
+        }
+
+        /* Add zoom cursor to carousel images */
+        .carousel-slide img {
+            cursor: zoom-in;
+        }
+
         /* Carousel Navigation Arrows */
         .carousel-arrow {
             position: absolute;
@@ -1202,6 +1251,12 @@
         </div>
     </div>
 
+    <!-- LIGHTBOX FOR IMAGE ZOOM -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img id="lightboxImg" src="" alt="Zoomed image">
+    </div>
+
     <!-- FOOTER -->
     <footer>
         <p>&copy; 2024 Valencia Photo Guide. All rights reserved.</p>
@@ -1291,6 +1346,42 @@
 
         // Start carousel autoplay
         startAutoplay();
+
+        // ─── LIGHTBOX FOR IMAGE ZOOM ──────────────────────────────────
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        // Add click handlers to all carousel images
+        document.querySelectorAll('.carousel-slide img').forEach(img => {
+            img.addEventListener('click', (e) => {
+                e.stopPropagation();
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+                stopAutoplay(); // Pause carousel when viewing image
+            });
+        });
+
+        // Close lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            startAutoplay(); // Resume carousel
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', closeLightbox);
+        
+        // Prevent image click from closing lightbox
+        lightboxImg.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
 
         // ─── SMART FLOATING BUTTON ───────────────────────────────────
         const floatingWrapper = document.getElementById('floatingBtn');
