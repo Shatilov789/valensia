@@ -766,55 +766,6 @@
             }
         }
 
-        /* Lightbox for image zoom */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            cursor: zoom-out;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox img {
-            max-width: 95%;
-            max-height: 95vh;
-            object-fit: contain;
-            box-shadow: 0 0 50px rgba(255, 107, 53, 0.3);
-            border-radius: 10px;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 50px;
-            color: white;
-            cursor: pointer;
-            font-weight: 300;
-            line-height: 1;
-            transition: all 0.3s ease;
-        }
-
-        .lightbox-close:hover {
-            color: #FF6B35;
-            transform: rotate(90deg);
-        }
-
-        /* Add zoom cursor to carousel images */
-        .carousel-slide img {
-            cursor: zoom-in;
-        }
-
         /* Carousel Navigation Arrows */
         .carousel-arrow {
             position: absolute;
@@ -1096,35 +1047,44 @@
                 </div>
             </div>
 
-            <!-- Mobile Full-Screen Slides (hidden on desktop) -->
+            <!-- Mobile Split-Screen Slides (vertical split) -->
             <div class="carousel-slide active mobile-only">
-                <img src="images/bad1.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="split-label">❌ Without the guide</div>
+                <div class="split-container">
+                    <div class="split-side without">
+                        <img src="images/bad1.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="split-label">❌ Without the guide</div>
+                    </div>
+                    <div class="split-side with">
+                        <img src="images/good1.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="split-label">✅ With the guide</div>
+                    </div>
+                </div>
             </div>
 
             <div class="carousel-slide mobile-only">
-                <img src="images/good1.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="split-label">✅ With the guide</div>
+                <div class="split-container">
+                    <div class="split-side without">
+                        <img src="images/bad2.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="split-label">❌ Without the guide</div>
+                    </div>
+                    <div class="split-side with">
+                        <img src="images/good2.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="split-label">✅ With the guide</div>
+                    </div>
+                </div>
             </div>
 
             <div class="carousel-slide mobile-only">
-                <img src="images/bad2.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="split-label">❌ Without the guide</div>
-            </div>
-
-            <div class="carousel-slide mobile-only">
-                <img src="images/good2.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="split-label">✅ With the guide</div>
-            </div>
-
-            <div class="carousel-slide mobile-only">
-                <img src="images/bad3.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="split-label">❌ Without the guide</div>
-            </div>
-
-            <div class="carousel-slide mobile-only">
-                <img src="images/good3.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="split-label">✅ With the guide</div>
+                <div class="split-container">
+                    <div class="split-side without">
+                        <img src="images/bad3.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="split-label">❌ Without the guide</div>
+                    </div>
+                    <div class="split-side with">
+                        <img src="images/good3.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div class="split-label">✅ With the guide</div>
+                    </div>
+                </div>
             </div>
 
             <div class="carousel-slide mobile-only">
@@ -1142,14 +1102,11 @@
                 <span class="dot desktop-only" data-slide="2"></span>
                 <span class="dot desktop-only" data-slide="3"></span>
                 
-                <!-- Mobile dots (7 slides) -->
+                <!-- Mobile dots (4 slides) -->
                 <span class="dot active mobile-only" data-slide="0"></span>
                 <span class="dot mobile-only" data-slide="1"></span>
                 <span class="dot mobile-only" data-slide="2"></span>
                 <span class="dot mobile-only" data-slide="3"></span>
-                <span class="dot mobile-only" data-slide="4"></span>
-                <span class="dot mobile-only" data-slide="5"></span>
-                <span class="dot mobile-only" data-slide="6"></span>
             </div>
 
             <!-- Navigation Arrows -->
@@ -1319,12 +1276,6 @@
         </div>
     </div>
 
-    <!-- LIGHTBOX FOR IMAGE ZOOM -->
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" id="lightboxClose">&times;</span>
-        <img id="lightboxImg" src="" alt="Zoomed image">
-    </div>
-
     <!-- FOOTER -->
     <footer>
         <p>&copy; 2024 Valencia Photo Guide. All rights reserved.</p>
@@ -1447,48 +1398,6 @@
 
         // Start carousel autoplay
         startAutoplay();
-
-        // ─── LIGHTBOX FOR IMAGE ZOOM ──────────────────────────────────
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxClose = document.getElementById('lightboxClose');
-
-        // Add click handlers to all carousel images using event delegation
-        document.querySelector('.carousel').addEventListener('click', function(e) {
-            const clickedImg = e.target.closest('img');
-            if (clickedImg && clickedImg.parentElement.classList.contains('split-side')) {
-                // Clicked on split-screen image
-                lightboxImg.src = clickedImg.src;
-                lightbox.classList.add('active');
-                stopAutoplay();
-            } else if (clickedImg && clickedImg.parentElement.classList.contains('carousel-slide')) {
-                // Clicked on full-screen image
-                lightboxImg.src = clickedImg.src;
-                lightbox.classList.add('active');
-                stopAutoplay();
-            }
-        });
-
-        // Close lightbox
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            startAutoplay(); // Resume carousel
-        }
-
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', closeLightbox);
-        
-        // Prevent image click from closing lightbox
-        lightboxImg.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightbox();
-            }
-        });
 
         // ─── SMART FLOATING BUTTON ───────────────────────────────────
         const floatingWrapper = document.getElementById('floatingBtn');
