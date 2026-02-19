@@ -58,7 +58,7 @@
             opacity: 1;
         }
 
-        /* Mobile: centered square container for full image */
+        /* Mobile: centered vertical rectangle for full vertical image */
         @media (max-width: 768px) {
             .carousel-slide.mobile-only {
                 display: flex;
@@ -68,15 +68,14 @@
             }
 
             .carousel-slide.mobile-only img {
-                width: 90vw;
-                height: 90vw;
-                max-width: 90vw;
-                max-height: 90vw;
+                width: auto;
+                height: 85vh;
+                max-width: 95vw;
+                max-height: 85vh;
                 object-fit: contain;
                 border: 3px solid rgba(255, 107, 53, 0.8);
                 border-radius: 15px;
                 box-shadow: 0 10px 40px rgba(255, 107, 53, 0.3);
-                background: rgba(0, 0, 0, 0.3);
             }
         }
 
