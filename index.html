@@ -58,7 +58,7 @@
             opacity: 1;
         }
 
-        /* Mobile: centered vertical rectangle for full vertical image */
+        /* Mobile: centered image with black bars top/bottom (like Telegram) */
         @media (max-width: 768px) {
             .carousel-slide.mobile-only {
                 display: flex;
@@ -68,10 +68,9 @@
             }
 
             .carousel-slide.mobile-only img {
-                width: auto;
-                height: 85vh;
-                max-width: 95vw;
-                max-height: 85vh;
+                width: 100%;
+                height: auto;
+                max-width: 100%;
                 object-fit: contain;
                 border: 3px solid rgba(255, 107, 53, 0.8);
                 border-radius: 15px;
