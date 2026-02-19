@@ -26,29 +26,16 @@
   /* ── HERO ── */
   .hero {
     background: var(--dark);
-    padding: 40px 20px 0;
+    padding: 40px 20px 32px;
     text-align: center;
-  }
-
-  .hero-badge {
-    display: inline-block;
-    background: var(--orange);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 6px 16px;
-    border-radius: 100px;
-    margin-bottom: 24px;
   }
 
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 8vw, 56px);
+    font-size: clamp(28px, 8vw, 52px);
     color: #fff;
     line-height: 1.15;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   .hero h1 span { color: var(--orange); }
@@ -57,25 +44,38 @@
     color: #aaa;
     font-size: 16px;
     max-width: 340px;
-    margin: 0 auto 36px;
+    margin: 0 auto;
     line-height: 1.6;
   }
 
-  /* ── COMPARISON SLIDER ── */
+  /* ── COMPARISON SECTION ── */
   .comparison-section {
     background: var(--dark);
-    padding: 0 20px 48px;
+    padding: 24px 20px 40px;
+  }
+
+  .comparison-labels {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto 10px;
+    gap: 8px;
+  }
+
+  .comparison-labels span {
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #ccc;
   }
 
   .comparison-pair {
     display: flex;
     gap: 8px;
-    margin-bottom: 12px;
+    max-width: 500px;
+    margin: 0 auto;
     border-radius: 16px;
     overflow: hidden;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .comparison-item {
@@ -83,7 +83,7 @@
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    aspect-ratio: 9/12;
+    aspect-ratio: 9 / 12;
     background: #222;
   }
 
@@ -95,45 +95,46 @@
     display: block;
   }
 
-  .comparison-label {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,0.7);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding: 4px 12px;
-    border-radius: 100px;
-    white-space: nowrap;
-  }
-
-  .label-bad { background: rgba(180,30,30,0.85); }
-  .label-good { background: rgba(var(--orange), 0.9); background: #FF5C2B; }
-
-  /* Navigation dots */
   .nav-dots {
     display: flex;
     justify-content: center;
     gap: 8px;
     margin-top: 16px;
   }
+
   .dot {
-    width: 8px; height: 8px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: #555;
     cursor: pointer;
-    transition: background .2s;
+    transition: background .2s, width .2s;
   }
-  .dot.active { background: var(--orange); width: 24px; border-radius: 4px; }
+
+  .dot.active {
+    background: var(--orange);
+    width: 24px;
+    border-radius: 4px;
+  }
 
   /* ── CTA BAR ── */
   .cta-bar {
     background: var(--dark);
-    padding: 0 20px 32px;
+    padding: 0 20px 36px;
     text-align: center;
+  }
+
+  .limited-badge {
+    display: inline-block;
+    background: rgba(255,92,43,0.2);
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 14px;
   }
 
   .cta-btn {
@@ -153,6 +154,7 @@
     transition: transform .15s, background .15s;
     box-shadow: 0 8px 30px rgba(255,92,43,0.4);
   }
+
   .cta-btn:hover { transform: scale(1.03); background: var(--orange-light); }
 
   /* ── HOW IT WORKS ── */
@@ -172,7 +174,7 @@
   .steps {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
   }
 
   .step {
@@ -185,23 +187,9 @@
     box-shadow: 0 2px 16px rgba(0,0,0,0.06);
   }
 
-  .step-icon {
-    font-size: 28px;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .step h3 {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .step p {
-    font-size: 13px;
-    color: var(--mid);
-    line-height: 1.5;
-  }
+  .step-icon { font-size: 28px; flex-shrink: 0; }
+  .step h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .step p { font-size: 13px; color: var(--mid); line-height: 1.5; }
 
   /* ── FEATURES ── */
   .features-section {
@@ -214,7 +202,7 @@
     font-size: 28px;
     color: #fff;
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
   }
 
   .features-grid {
@@ -222,7 +210,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
 
   .feature-item {
@@ -236,12 +224,7 @@
     border-radius: 12px;
   }
 
-  .feature-check {
-    color: var(--orange);
-    font-size: 16px;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
+  .feature-check { color: var(--orange); font-size: 16px; font-weight: 700; flex-shrink: 0; }
 
   /* ── WHY USEFUL ── */
   .why-grid {
@@ -284,7 +267,7 @@
     gap: 10px;
     justify-content: center;
     max-width: 400px;
-    margin: 0 auto 32px;
+    margin: 0 auto 24px;
   }
 
   .pill {
@@ -315,15 +298,10 @@
     border-radius: 24px;
     padding: 36px 28px;
     box-shadow: 0 8px 40px rgba(255,92,43,0.12);
-    margin: 28px 0;
+    margin: 28px 0 24px;
   }
 
-  .price-old {
-    font-size: 18px;
-    color: #aaa;
-    text-decoration: line-through;
-    margin-bottom: 4px;
-  }
+  .price-old { font-size: 18px; color: #aaa; text-decoration: line-through; margin-bottom: 4px; }
 
   .price-new {
     font-family: 'Playfair Display', serif;
@@ -351,12 +329,7 @@
     color: #333;
   }
 
-  .price-features li::before {
-    content: '✔';
-    color: var(--orange);
-    font-weight: 700;
-    flex-shrink: 0;
-  }
+  .price-features li::before { content: '✔'; color: var(--orange); font-weight: 700; }
 
   /* ── FOOTER ── */
   footer {
@@ -372,7 +345,6 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">📍 Valencia Photo Guide</div>
   <h1>Capture Valencia<br><span>the right way</span></h1>
   <p>Same place. Different angle.<br>Completely different photo.</p>
 </div>
@@ -380,43 +352,38 @@
 <!-- COMPARISON -->
 <div class="comparison-section">
 
-  <!-- Pair 1 -->
-  <div class="comparison-pair active-pair" id="pair-1">
+  <div class="comparison-labels">
+    <span>❌ Without the guide</span>
+    <span>✅ With the guide</span>
+  </div>
+
+  <div class="comparison-pair" id="pair-1">
     <div class="comparison-item">
       <img src="images/bad1.jpg" alt="Without guide" />
-      <div class="comparison-label label-bad">❌ Without the guide</div>
     </div>
     <div class="comparison-item">
       <img src="images/good1.jpg" alt="With guide" />
-      <div class="comparison-label label-good">✅ With the guide</div>
     </div>
   </div>
 
-  <!-- Pair 2 -->
   <div class="comparison-pair" id="pair-2" style="display:none;">
     <div class="comparison-item">
       <img src="images/bad2.jpg" alt="Without guide" />
-      <div class="comparison-label label-bad">❌ Without the guide</div>
     </div>
     <div class="comparison-item">
       <img src="images/good2.jpg" alt="With guide" />
-      <div class="comparison-label label-good">✅ With the guide</div>
     </div>
   </div>
 
-  <!-- Pair 3 -->
   <div class="comparison-pair" id="pair-3" style="display:none;">
     <div class="comparison-item">
       <img src="images/bad3.jpg" alt="Without guide" />
-      <div class="comparison-label label-bad">❌ Without the guide</div>
     </div>
     <div class="comparison-item">
       <img src="images/good3.jpg" alt="With guide" />
-      <div class="comparison-label label-good">✅ With the guide</div>
     </div>
   </div>
 
-  <!-- Nav dots -->
   <div class="nav-dots">
     <div class="dot active" onclick="showPair(1)"></div>
     <div class="dot" onclick="showPair(2)"></div>
@@ -424,36 +391,9 @@
   </div>
 </div>
 
-<script>
-  let current = 1;
-
-  function showPair(n) {
-    for (let i = 1; i <= 3; i++) {
-      document.getElementById('pair-' + i).style.display = i === n ? 'flex' : 'none';
-    }
-    document.querySelectorAll('.dot').forEach((d, i) => {
-      d.classList.toggle('active', i === n - 1);
-    });
-    current = n;
-  }
-
-  // Auto-rotate every 3 seconds
-  setInterval(() => showPair(current === 3 ? 1 : current + 1), 3000);
-
-  // Swipe support
-  let touchStartX = 0;
-  document.querySelector('.comparison-section').addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].clientX;
-  });
-  document.querySelector('.comparison-section').addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 40) showPair(dx < 0 ? Math.min(current + 1, 3) : Math.max(current - 1, 1));
-  });
-</script>
-
 <!-- CTA BAR -->
 <div class="cta-bar">
-  <div style="color:#888; font-size:12px; letter-spacing:1px; text-transform:uppercase; margin-bottom:12px;">LIMITED OFFER</div>
+  <div class="limited-badge">Limited offer</div><br>
   <a href="#pricing" class="cta-btn">Buy now for €9.99</a>
 </div>
 
@@ -530,6 +470,11 @@
       <h4>No guessing</h4>
       <p>Just follow the guide — perfect results</p>
     </div>
+    <div class="why-card">
+      <div class="icon">💸</div>
+      <h4>Way cheaper</h4>
+      <p>Much cheaper than hiring a photographer</p>
+    </div>
   </div>
 </div>
 
@@ -553,23 +498,46 @@
   <div class="price-box">
     <div class="price-old">€25</div>
     <div class="price-new">€9.99</div>
-
     <ul class="price-features">
       <li>Lifetime access to Valencia photo spots</li>
       <li>Free updates</li>
       <li>Works instantly after payment</li>
     </ul>
-
     <a href="#" class="cta-btn">Get instant access for €9.99</a>
   </div>
 
-  <div style="color:#888; font-size:12px; letter-spacing:1px; text-transform:uppercase; margin-bottom:12px;">LIMITED OFFER</div>
+  <div class="limited-badge">Limited offer</div><br><br>
   <a href="#" class="cta-btn">Buy now for €9.99</a>
 </div>
 
 <!-- FOOTER -->
 <footer>© 2024 Valencia Photo Guide. All rights reserved.</footer>
 
+<script>
+  let current = 1;
+
+  function showPair(n) {
+    for (let i = 1; i <= 3; i++) {
+      document.getElementById('pair-' + i).style.display = (i === n) ? 'flex' : 'none';
+    }
+    document.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', i === n - 1);
+    });
+    current = n;
+  }
+
+  // Auto-rotate every 3.5 seconds
+  setInterval(() => showPair(current === 3 ? 1 : current + 1), 3500);
+
+  // Swipe support
+  let touchStartX = 0;
+  const section = document.querySelector('.comparison-section');
+  section.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; });
+  section.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) showPair(dx < 0 ? Math.min(current + 1, 3) : Math.max(current - 1, 1));
+  });
+</script>
+
 </body>
 </html>
-
