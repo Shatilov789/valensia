@@ -58,19 +58,21 @@
             opacity: 1;
         }
 
-        /* Mobile: centered image with black bars top/bottom (like Telegram) */
+        /* Mobile: centered image with proportional size (like Telegram) */
         @media (max-width: 768px) {
             .carousel-slide.mobile-only {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 padding: 0;
+                background: #000;
             }
 
             .carousel-slide.mobile-only img {
-                width: 100%;
+                width: auto;
                 height: auto;
                 max-width: 100%;
+                max-height: 100vh;
                 object-fit: contain;
                 border: 3px solid rgba(255, 107, 53, 0.8);
                 border-radius: 15px;
