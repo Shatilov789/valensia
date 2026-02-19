@@ -58,23 +58,25 @@
             opacity: 1;
         }
 
-        /* Mobile: responsive adaptive images */
+        /* Mobile: centered square container for full image */
         @media (max-width: 768px) {
             .carousel-slide.mobile-only {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding: 5vh 2vw;
+                padding: 0;
             }
 
             .carousel-slide.mobile-only img {
-                max-width: 100%;
-                width: 100%;
-                height: auto;
+                width: 90vw;
+                height: 90vw;
+                max-width: 90vw;
+                max-height: 90vw;
                 object-fit: contain;
                 border: 3px solid rgba(255, 107, 53, 0.8);
                 border-radius: 15px;
                 box-shadow: 0 10px 40px rgba(255, 107, 53, 0.3);
+                background: rgba(0, 0, 0, 0.3);
             }
         }
 
