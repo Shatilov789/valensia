@@ -58,23 +58,19 @@
             opacity: 1;
         }
 
-        /* Mobile: 20% top, 60% center image, 20% bottom */
+        /* Mobile: responsive adaptive images */
         @media (max-width: 768px) {
             .carousel-slide.mobile-only {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding-top: 20vh;
-                padding-bottom: 20vh;
-                padding-left: 0;
-                padding-right: 0;
+                padding: 5vh 2vw;
             }
 
             .carousel-slide.mobile-only img {
-                width: 100%;
                 max-width: 100%;
+                width: 100%;
                 height: auto;
-                max-height: 60vh;
                 object-fit: contain;
                 border: 3px solid rgba(255, 107, 53, 0.8);
                 border-radius: 15px;
