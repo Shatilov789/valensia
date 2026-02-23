@@ -11,11 +11,81 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-body: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --bg-hero: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            --text-primary: #e0e0e0;
+            --text-heading: #ffffff;
+            --text-muted: #b0b0b0;
+            --section-bg: rgba(255, 255, 255, 0.02);
+            --section-bg-even: rgba(255, 255, 255, 0.05);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --footer-bg: rgba(0, 0, 0, 0.5);
+            --footer-color: #888;
+        }
+
+        body.bg-theme-sky {
+            --bg-body: #EAF3FF;
+            --bg-hero: #EAF3FF;
+            --text-primary: #2c3e50;
+            --text-heading: #1a252f;
+            --text-muted: #4a6572;
+            --section-bg: rgba(255, 255, 255, 0.6);
+            --section-bg-even: rgba(255, 255, 255, 0.75);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(0, 0, 0, 0.08);
+            --footer-bg: rgba(255, 255, 255, 0.9);
+            --footer-color: #5a6c7d;
+        }
+
+        body.bg-theme-turquoise {
+            --bg-body: #E6F7F8;
+            --bg-hero: #E6F7F8;
+            --text-primary: #1e4d52;
+            --text-heading: #0d3d42;
+            --text-muted: #2d5f64;
+            --section-bg: rgba(255, 255, 255, 0.55);
+            --section-bg-even: rgba(255, 255, 255, 0.7);
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-border: rgba(0, 0, 0, 0.06);
+            --footer-bg: rgba(255, 255, 255, 0.85);
+            --footer-color: #1e4d52;
+        }
+
+        body.bg-theme-sandy {
+            --bg-body: #FFF4E8;
+            --bg-hero: #FFF4E8;
+            --text-primary: #4a3728;
+            --text-heading: #2d1f14;
+            --text-muted: #6b5344;
+            --section-bg: rgba(255, 255, 255, 0.5);
+            --section-bg-even: rgba(255, 255, 255, 0.65);
+            --card-bg: rgba(255, 255, 255, 0.75);
+            --card-border: rgba(0, 0, 0, 0.08);
+            --footer-bg: rgba(255, 255, 255, 0.9);
+            --footer-color: #5a4234;
+        }
+
+        /* Sky: яскравий кораловий CTA */
+        body.bg-theme-sky .floating-buy-btn,
+        body.bg-theme-sky .cta-button {
+            background: rgba(255, 107, 53, 0.95);
+            border-color: #e85a2a;
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(232, 90, 42, 0.5);
+        }
+        body.bg-theme-sky .floating-buy-btn:hover,
+        body.bg-theme-sky .cta-button:hover {
+            background: #e85a2a;
+            box-shadow: 0 6px 28px rgba(232, 90, 42, 0.6);
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            color: #e0e0e0;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: var(--text-primary);
+            background: var(--bg-body);
             background-attachment: fixed;
         }
 
@@ -25,7 +95,7 @@
             min-height: 100vh;
             padding: 0;
             overflow: hidden;
-            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            background: var(--bg-hero);
         }
 
         .carousel {
@@ -357,15 +427,21 @@
             font-weight: 800;
             margin-bottom: 6px;
             line-height: 1.2;
-            color: #ffffff;
+            color: var(--text-heading);
             text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        body.bg-theme-sky .hero h1,
+        body.bg-theme-turquoise .hero h1,
+        body.bg-theme-sandy .hero h1 {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
         }
 
         .hero-subtitle {
             font-size: clamp(0.95rem, 2.5vw, 1.25rem);
             margin-bottom: 0;
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
         }
 
         /* CTA Button */
@@ -465,15 +541,15 @@
         /* Section Styling */
         section {
             padding: 80px 20px;
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--section-bg);
             backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--card-border);
             position: relative;
         }
 
         section:nth-child(even) {
-            background: rgba(255, 255, 255, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--section-bg-even);
+            border-top: 1px solid var(--card-border);
         }
 
         /* Add subtle gradient overlay to sections */
@@ -499,7 +575,7 @@
             text-align: center;
             margin-bottom: 50px;
             font-weight: 800;
-            color: #ffffff;
+            color: var(--text-heading);
             position: relative;
             padding-bottom: 20px;
         }
@@ -541,9 +617,9 @@
         .step-card {
             text-align: center;
             padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -589,7 +665,7 @@
         }
 
         .step-card p {
-            color: #b0b0b0;
+            color: var(--text-muted);
             line-height: 1.6;
         }
 
@@ -604,18 +680,18 @@
         .benefits-list {
             max-width: 700px;
             margin: 0 auto 50px;
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--card-bg);
             padding: 30px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
         }
 
         .benefit-item {
             display: flex;
             align-items: flex-start;
             padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: #d0d0d0;
+            border-bottom: 1px solid var(--card-border);
+            color: var(--text-muted);
         }
 
         .benefit-item:last-child {
@@ -647,13 +723,13 @@
         }
 
         .reason-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
             padding: 30px;
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -686,7 +762,7 @@
         .reason-card h3 {
             font-size: 18px;
             margin-bottom: 10px;
-            color: #ffffff;
+            color: var(--text-heading);
         }
 
         @media (max-width: 768px) {
@@ -698,7 +774,7 @@
 
         .reason-card p {
             font-size: 14px;
-            color: #b0b0b0;
+            color: var(--text-muted);
             line-height: 1.5;
         }
 
@@ -728,9 +804,9 @@
         .audience-card {
             text-align: center;
             padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--card-border);
             border-radius: 20px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -765,8 +841,12 @@
 
         .audience-card h3 {
             font-size: 18px;
-            color: #ffffff;
+            color: var(--text-heading);
             font-weight: 600;
+        }
+
+        .audience-tagline {
+            color: var(--text-heading);
         }
 
         @media (max-width: 768px) {
@@ -900,9 +980,9 @@
 
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.5);
+            background: var(--footer-bg);
             backdrop-filter: blur(10px);
-            color: #888;
+            color: var(--footer-color);
             text-align: center;
             padding: 30px 20px;
             font-size: 14px;
@@ -1145,6 +1225,48 @@
         /* Pulsing CTA button */
         .cta-button:hover {
             animation: pulse 1s infinite;
+        }
+
+        /* Theme switcher (check background variants) */
+        .theme-switcher {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 2000;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            max-width: 180px;
+        }
+        .theme-switcher button {
+            padding: 8px 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.35);
+            background: rgba(0,0,0,0.4);
+            color: #fff;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .theme-switcher button:hover {
+            background: rgba(255,255,255,0.15);
+        }
+        .theme-switcher button.active {
+            box-shadow: 0 0 0 2px rgba(255,107,53,0.9);
+            border-color: #FF6B35;
+        }
+        body.bg-theme-sky .theme-switcher button,
+        body.bg-theme-turquoise .theme-switcher button,
+        body.bg-theme-sandy .theme-switcher button {
+            border-color: rgba(0,0,0,0.2);
+            color: #333;
+            background: rgba(255,255,255,0.85);
+        }
+        body.bg-theme-sky .theme-switcher button.active,
+        body.bg-theme-turquoise .theme-switcher button.active,
+        body.bg-theme-sandy .theme-switcher button.active {
+            border-color: #FF6B35;
+            box-shadow: 0 0 0 2px rgba(255,107,53,0.5);
         }
 
         /* Smooth page scroll */
@@ -1423,7 +1545,7 @@
                     <h3>Instagram & content lovers</h3>
                 </div>
             </div>
-            <p style="text-align: center; font-size: 20px; font-weight: 600; margin-top: 30px; color: #ffffff;">
+            <p class="audience-tagline" style="text-align: center; font-size: 20px; font-weight: 600; margin-top: 30px;">
                 If you want great photos — this is for you.
             </p>
         </div>
@@ -1465,6 +1587,14 @@
     <div class="photo-lightbox" id="photoLightbox" aria-hidden="true">
         <button class="photo-lightbox-close" id="photoLightboxClose" aria-label="Close photo preview">×</button>
         <img id="photoLightboxImage" alt="Fullscreen photo preview">
+    </div>
+
+    <!-- THEME SWITCHER (перевірка кольору фону) -->
+    <div class="theme-switcher" aria-label="Варіанти фону">
+        <button type="button" data-theme="" class="active">Dark</button>
+        <button type="button" data-theme="sky">🌅 Sky</button>
+        <button type="button" data-theme="turquoise">🌊 Turquoise</button>
+        <button type="button" data-theme="sandy">🌤 Sandy</button>
     </div>
 
     <!-- JAVASCRIPT -->
@@ -1584,6 +1714,32 @@
 
         // Start carousel autoplay
         startAutoplay();
+
+        // Theme switcher (background variants)
+        (function() {
+            var KEY = 'valensia-bg-theme';
+            var buttons = document.querySelectorAll('.theme-switcher button[data-theme]');
+            var allBtns = document.querySelectorAll('.theme-switcher button');
+            function setTheme(theme) {
+                document.body.classList.remove('bg-theme-sky', 'bg-theme-turquoise', 'bg-theme-sandy');
+                if (theme === 'sky') document.body.classList.add('bg-theme-sky');
+                else if (theme === 'turquoise') document.body.classList.add('bg-theme-turquoise');
+                else if (theme === 'sandy') document.body.classList.add('bg-theme-sandy');
+                allBtns.forEach(function(btn) {
+                    btn.classList.toggle('active', (btn.getAttribute('data-theme') || '') === theme);
+                });
+                try { localStorage.setItem(KEY, theme); } catch (e) {}
+            }
+            allBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    setTheme(btn.getAttribute('data-theme') || '');
+                });
+            });
+            try {
+                var saved = localStorage.getItem(KEY);
+                if (saved) setTheme(saved);
+            } catch (e) {}
+        })();
 
         // Photo fullscreen preview (lightbox)
         const photoLightbox = document.getElementById('photoLightbox');
