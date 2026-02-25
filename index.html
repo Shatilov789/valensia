@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="images/good1.jpg">
+    <link rel="preload" as="image" href="images/bad1.jpg">
     <style>
         * {
             margin: 0;
@@ -1495,11 +1497,11 @@
             <div class="carousel-slide active desktop-only">
                 <div class="split-container">
                     <div class="split-side with">
-                        <img src="images/good1.jpg" alt="Valencia - Perfect angle">
+                        <img src="images/good1.jpg" alt="Valencia - Perfect angle" decoding="async" fetchpriority="high">
                         <div class="split-label">✅ With the guide</div>
                     </div>
                     <div class="split-side without">
-                        <img src="images/bad1.jpg" alt="Valencia - Wrong angle">
+                        <img src="images/bad1.jpg" alt="Valencia - Wrong angle" decoding="async" fetchpriority="high">
                         <div class="split-label">❌ Without the guide</div>
                     </div>
                 </div>
@@ -1508,11 +1510,11 @@
             <div class="carousel-slide desktop-only">
                 <div class="split-container">
                     <div class="split-side with">
-                        <img src="images/good2.jpg" alt="Valencia - Perfect angle">
+                        <img src="images/good2.jpg" alt="Valencia - Perfect angle" loading="lazy" decoding="async">
                         <div class="split-label">✅ With the guide</div>
                     </div>
                     <div class="split-side without">
-                        <img src="images/bad2.jpg" alt="Valencia - Wrong angle">
+                        <img src="images/bad2.jpg" alt="Valencia - Wrong angle" loading="lazy" decoding="async">
                         <div class="split-label">❌ Without the guide</div>
                     </div>
                 </div>
@@ -1521,18 +1523,18 @@
             <div class="carousel-slide desktop-only">
                 <div class="split-container">
                     <div class="split-side with">
-                        <img src="images/good3.jpg" alt="Valencia - Perfect angle">
+                        <img src="images/good3.jpg" alt="Valencia - Perfect angle" loading="lazy" decoding="async">
                         <div class="split-label">✅ With the guide</div>
                     </div>
                     <div class="split-side without">
-                        <img src="images/bad3.jpg" alt="Valencia - Wrong angle">
+                        <img src="images/bad3.jpg" alt="Valencia - Wrong angle" loading="lazy" decoding="async">
                         <div class="split-label">❌ Without the guide</div>
                     </div>
                 </div>
             </div>
 
             <div class="carousel-slide desktop-only">
-                <img src="images/map.jpg" alt="Valencia photo spots map" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="images/map.jpg" alt="Valencia photo spots map" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="split-label" style="left: 50%; transform: translateX(-50%); top: 20px;">
                     📍 All photo spots
                 </div>
@@ -1543,11 +1545,11 @@
                 <p class="carousel-photo-hint-mobile" aria-hidden="true"><span>Click on photo for fullscreen view</span></p>
                 <div class="mobile-pair">
                     <div class="mobile-photo-card with">
-                        <img src="images/good1.jpg" alt="Valencia - Perfect angle">
+                        <img src="images/good1.jpg" alt="Valencia - Perfect angle" decoding="async" fetchpriority="high">
                         <div class="split-label">✅ With the guide</div>
                     </div>
                     <div class="mobile-photo-card without">
-                        <img src="images/bad1.jpg" alt="Valencia - Wrong angle">
+                        <img src="images/bad1.jpg" alt="Valencia - Wrong angle" decoding="async" fetchpriority="high">
                         <div class="split-label">❌ Without the guide</div>
                     </div>
                 </div>
@@ -1557,11 +1559,11 @@
                 <p class="carousel-photo-hint-mobile" aria-hidden="true"><span>Click on photo for fullscreen view</span></p>
                 <div class="mobile-pair">
                     <div class="mobile-photo-card with">
-                        <img src="images/good2.jpg" alt="Valencia - Perfect angle">
+                        <img src="images/good2.jpg" alt="Valencia - Perfect angle" loading="lazy" decoding="async">
                         <div class="split-label">✅ With the guide</div>
                     </div>
                     <div class="mobile-photo-card without">
-                        <img src="images/bad2.jpg" alt="Valencia - Wrong angle">
+                        <img src="images/bad2.jpg" alt="Valencia - Wrong angle" loading="lazy" decoding="async">
                         <div class="split-label">❌ Without the guide</div>
                     </div>
                 </div>
@@ -1571,11 +1573,11 @@
                 <p class="carousel-photo-hint-mobile" aria-hidden="true"><span>Click on photo for fullscreen view</span></p>
                 <div class="mobile-pair">
                     <div class="mobile-photo-card with">
-                        <img src="images/good3.jpg" alt="Valencia - Perfect angle">
+                        <img src="images/good3.jpg" alt="Valencia - Perfect angle" loading="lazy" decoding="async">
                         <div class="split-label">✅ With the guide</div>
                     </div>
                     <div class="mobile-photo-card without">
-                        <img src="images/bad3.jpg" alt="Valencia - Wrong angle">
+                        <img src="images/bad3.jpg" alt="Valencia - Wrong angle" loading="lazy" decoding="async">
                         <div class="split-label">❌ Without the guide</div>
                     </div>
                 </div>
@@ -1584,7 +1586,7 @@
             <div class="carousel-slide mobile-only mobile-map-slide">
                 <p class="carousel-photo-hint-mobile" aria-hidden="true"><span>Click on photo for fullscreen view</span></p>
                 <div class="mobile-map-wrap">
-                    <img src="images/map.jpg" alt="Valencia photo spots map">
+                    <img src="images/map.jpg" alt="Valencia photo spots map" loading="lazy" decoding="async">
                     <div class="split-label" style="left: 50%; transform: translateX(-50%); top: 12px;">
                         📍 All photo spots
                     </div>
