@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valencia Photo Guide - Capture Perfect Shots</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,81 +14,11 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --bg-body: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            --bg-hero: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
-            --text-primary: #e0e0e0;
-            --text-heading: #ffffff;
-            --text-muted: #b0b0b0;
-            --section-bg: rgba(255, 255, 255, 0.02);
-            --section-bg-even: rgba(255, 255, 255, 0.05);
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --footer-bg: rgba(0, 0, 0, 0.5);
-            --footer-color: #888;
-        }
-
-        body.bg-theme-sky {
-            --bg-body: #EAF3FF;
-            --bg-hero: #EAF3FF;
-            --text-primary: #2c3e50;
-            --text-heading: #1a252f;
-            --text-muted: #4a6572;
-            --section-bg: rgba(255, 255, 255, 0.6);
-            --section-bg-even: rgba(255, 255, 255, 0.75);
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --card-border: rgba(0, 0, 0, 0.08);
-            --footer-bg: rgba(255, 255, 255, 0.9);
-            --footer-color: #5a6c7d;
-        }
-
-        body.bg-theme-turquoise {
-            --bg-body: #E6F7F8;
-            --bg-hero: #E6F7F8;
-            --text-primary: #1e4d52;
-            --text-heading: #0d3d42;
-            --text-muted: #2d5f64;
-            --section-bg: rgba(255, 255, 255, 0.55);
-            --section-bg-even: rgba(255, 255, 255, 0.7);
-            --card-bg: rgba(255, 255, 255, 0.8);
-            --card-border: rgba(0, 0, 0, 0.06);
-            --footer-bg: rgba(255, 255, 255, 0.85);
-            --footer-color: #1e4d52;
-        }
-
-        body.bg-theme-sandy {
-            --bg-body: #FFF4E8;
-            --bg-hero: #FFF4E8;
-            --text-primary: #4a3728;
-            --text-heading: #2d1f14;
-            --text-muted: #6b5344;
-            --section-bg: rgba(255, 255, 255, 0.5);
-            --section-bg-even: rgba(255, 255, 255, 0.65);
-            --card-bg: rgba(255, 255, 255, 0.75);
-            --card-border: rgba(0, 0, 0, 0.08);
-            --footer-bg: rgba(255, 255, 255, 0.9);
-            --footer-color: #5a4234;
-        }
-
-        /* Sky: яскравий кораловий CTA */
-        body.bg-theme-sky .floating-buy-btn,
-        body.bg-theme-sky .cta-button {
-            background: rgba(255, 107, 53, 0.95);
-            border-color: #e85a2a;
-            color: #fff;
-            box-shadow: 0 4px 24px rgba(232, 90, 42, 0.5);
-        }
-        body.bg-theme-sky .floating-buy-btn:hover,
-        body.bg-theme-sky .cta-button:hover {
-            background: #e85a2a;
-            box-shadow: 0 6px 28px rgba(232, 90, 42, 0.6);
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--bg-body);
+            color: #1a4d4d;
+            background: #E6F7F8;
             background-attachment: fixed;
         }
 
@@ -95,19 +28,67 @@
             min-height: 100vh;
             padding: 0;
             overflow: hidden;
-            background: var(--bg-hero);
+            background: #E6F7F8;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top strip with scrolling "sale X% off" (X filled by JS from data-old-price / data-current-price) */
+        .hero-top-strip {
+            flex-shrink: 0;
+            height: 44px;
+            background: linear-gradient(105deg, #0e9aa0 0%, #0b7a7f 45%, #0a6b6f 100%);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            box-shadow: 0 2px 12px rgba(10, 107, 111, 0.25);
+            position: relative;
+        }
+
+        .hero-top-strip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 50%, rgba(0,0,0,0.06) 100%);
+            pointer-events: none;
+        }
+
+        .hero-top-strip-inner {
+            display: flex;
+            animation: stripScroll 22s linear infinite;
+            white-space: nowrap;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+        }
+
+        .hero-top-strip-inner span {
+            padding: 0 2rem;
+        }
+
+        @keyframes stripScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .carousel {
             position: relative;
             width: 100%;
-            height: 100vh;
+            flex: 1;
+            min-height: 50vh;
             margin: 0;
         }
 
         @media (max-width: 768px) {
             .carousel {
                 height: 100vh;
+                min-height: 100vh;
+                flex: none;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -135,14 +116,37 @@
             :root {
                 --mobile-hero-shift: 110px;
                 --mobile-image-top-gap: calc(210px + var(--mobile-hero-shift));
+                --hero-strip-height: 44px;
             }
 
             .carousel-slide.mobile-only {
                 display: flex;
-                align-items: flex-start;
-                justify-content: center;
-                padding: calc(var(--mobile-image-top-gap) - 5px) 2px 118px;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 0 2px 155px;
+                padding-top: calc(var(--mobile-image-top-gap) - 5px);
                 overflow: visible;
+            }
+
+            .carousel-slide.mobile-only .carousel-photo-hint-mobile {
+                flex-shrink: 0;
+                width: 100%;
+                text-align: center;
+                padding: 10px 12px 12px;
+                font-size: 12px;
+                font-weight: 600;
+                color: #0b7a7f;
+                letter-spacing: 0.02em;
+            }
+
+            .carousel-slide.mobile-only .carousel-photo-hint-mobile span {
+                opacity: 0.9;
+            }
+
+            .carousel-slide.mobile-only .mobile-pair {
+                flex: 1;
+                min-height: 0;
             }
 
             .carousel-slide.mobile-only > img {
@@ -182,8 +186,7 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                object-position: center 58%;
-                transform: scale(1.01);
+                object-position: center;
             }
 
             .mobile-photo-card .split-label {
@@ -239,7 +242,7 @@
             display: none;
             align-items: center;
             justify-content: center;
-            background: rgba(8, 10, 20, 0.9);
+            background: rgba(20, 18, 16, 0.92);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             padding: 18px;
@@ -265,10 +268,10 @@
             right: 14px;
             width: 44px;
             height: 44px;
-            border: 1px solid rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 999px;
             color: #fff;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.12);
             font-size: 28px;
             line-height: 1;
             cursor: pointer;
@@ -300,6 +303,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
         }
 
         .split-label {
@@ -337,7 +341,69 @@
 
         /* Hero heading area above carousel */
         .hero-content {
-            display: none;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 36px 20px 24px;
+            animation: heroFadeIn 0.8s ease-out;
+        }
+
+        .carousel-photo-hint {
+            flex-shrink: 0;
+            text-align: center;
+            padding: 0 16px 12px;
+            margin-top: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #0b7a7f;
+            letter-spacing: 0.02em;
+        }
+
+        /* Desktop: hide heading, subtitle and hint — only the sale strip stays */
+        @media (min-width: 769px) {
+            .hero-content,
+            .carousel-photo-hint {
+                display: none !important;
+            }
+        }
+
+        .carousel-photo-hint span {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-photo-hint {
+                display: none;
+            }
+        }
+
+        .hero-content .hero-subtitle {
+            animation: heroFadeIn 0.8s ease-out 0.15s both;
+        }
+
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroFadeInCenter {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
         }
 
         .floating-btn-wrapper {
@@ -350,6 +416,7 @@
             flex-direction: column;
             align-items: center;
             gap: 6px;
+            animation: heroFadeInCenter 0.6s ease-out 0.4s both;
         }
 
         .floating-btn {
@@ -357,30 +424,32 @@
             flex-direction: column;
             align-items: center;
             gap: 6px;
-            width: 100%;
+            width: auto;
+            max-width: min(90vw, 340px);
         }
 
         .floating-btn .limited-badge {
-            background: rgba(220, 53, 69, 0.85);
+            background: linear-gradient(135deg, #0d8a8f 0%, #0a6b6f 100%);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 100, 100, 0.4);
+            border: none;
             color: white;
-            padding: 3px 10px;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 8px;
+            font-size: 9px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             white-space: nowrap;
             text-align: center;
             align-self: center;
+            box-shadow: 0 2px 10px rgba(10, 107, 111, 0.35);
         }
 
         .floating-buy-btn {
-            background: rgba(255, 107, 53, 0.15);
+            background: rgba(255, 107, 53, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 107, 53, 0.7);
+            border: 2px solid rgba(255, 107, 53, 0.9);
             color: white;
             padding: 14px 32px;
             font-size: 17px;
@@ -397,21 +466,19 @@
             transition: all 0.3s ease;
             text-align: center;
             width: 100%;
+            display: inline-block;
         }
 
         .floating-buy-btn:hover {
-            background: rgba(255, 107, 53, 0.35);
-            border-color: rgba(255, 107, 53, 1);
-            box-shadow:
-                0 0 30px rgba(255, 107, 53, 0.6),
-                0 0 80px rgba(255, 107, 53, 0.2),
-                inset 0 0 30px rgba(255, 107, 53, 0.1);
-            transform: scale(1.05);
+            background: #e55a2b;
+            border-color: #d94f1f;
+            box-shadow: 0 6px 28px rgba(255, 107, 53, 0.45);
+            transform: translateY(-2px) scale(1.02);
         }
 
         .btn-section-label {
             font-size: 11px;
-            color: rgba(255, 255, 255, 0.5);
+            color: #1a5c5c;
             text-transform: uppercase;
             letter-spacing: 1px;
             height: 16px;
@@ -427,21 +494,17 @@
             font-weight: 800;
             margin-bottom: 6px;
             line-height: 1.2;
-            color: var(--text-heading);
-            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
-        }
-
-        body.bg-theme-sky .hero h1,
-        body.bg-theme-turquoise .hero h1,
-        body.bg-theme-sandy .hero h1 {
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+            color: #0d3d3d;
+            text-shadow: none;
+            letter-spacing: -0.02em;
+            animation: heroFadeIn 0.8s ease-out 0.05s both;
         }
 
         .hero-subtitle {
             font-size: clamp(0.95rem, 2.5vw, 1.25rem);
             margin-bottom: 0;
             font-weight: 500;
-            color: var(--text-primary);
+            color: #1a5c5c;
         }
 
         /* CTA Button */
@@ -465,14 +528,14 @@
             .hero-content {
                 display: block;
                 position: absolute;
-                top: 0;
+                top: var(--hero-strip-height, 44px);
                 left: 50%;
                 transform: translateX(-50%);
                 z-index: 20;
                 width: calc(100% - 12px);
-                height: var(--mobile-image-top-gap);
+                height: calc(var(--mobile-image-top-gap) - var(--hero-strip-height, 44px));
                 text-align: center;
-                padding: 0 10px;
+                padding: 16px 10px 0;
                 border-radius: 0;
                 background: transparent;
                 border: 0;
@@ -488,24 +551,20 @@
             .hero h1 {
                 font-size: clamp(2rem, 8.5vw, 2.6rem);
                 margin-bottom: 10px;
-                color: rgba(222, 228, 238, 0.86);
+                color: #0d3d3d;
                 letter-spacing: -0.02em;
                 line-height: 1.02;
-                text-shadow:
-                    0 1px 0 rgba(255, 255, 255, 0.16),
-                    0 10px 22px rgba(0, 0, 0, 0.38);
+                text-shadow: none;
             }
 
             .hero-subtitle {
                 font-size: clamp(1.08rem, 4.6vw, 1.3rem);
                 font-weight: 500;
-                color: rgba(198, 206, 218, 0.78);
+                color: #1a5c5c;
                 line-height: 1.32;
                 max-width: 380px;
                 margin: 0 auto;
-                text-shadow:
-                    0 1px 0 rgba(255, 255, 255, 0.12),
-                    0 8px 18px rgba(0, 0, 0, 0.32);
+                text-shadow: none;
             }
 
             .cta-button {
@@ -541,15 +600,15 @@
         /* Section Styling */
         section {
             padding: 80px 20px;
-            background: var(--section-bg);
+            background: rgba(230, 247, 248, 0.5);
             backdrop-filter: blur(10px);
-            border-top: 1px solid var(--card-border);
+            border-top: 1px solid rgba(13, 107, 111, 0.12);
             position: relative;
         }
 
         section:nth-child(even) {
-            background: var(--section-bg-even);
-            border-top: 1px solid var(--card-border);
+            background: rgba(221, 244, 245, 0.7);
+            border-top: 1px solid rgba(13, 107, 111, 0.12);
         }
 
         /* Add subtle gradient overlay to sections */
@@ -560,7 +619,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at top right, rgba(255, 107, 53, 0.03), transparent 50%);
+            background: radial-gradient(circle at top right, rgba(255, 107, 53, 0.04), transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
@@ -575,7 +634,7 @@
             text-align: center;
             margin-bottom: 50px;
             font-weight: 800;
-            color: var(--text-heading);
+            color: #0d3d3d;
             position: relative;
             padding-bottom: 20px;
         }
@@ -617,18 +676,18 @@
         .step-card {
             text-align: center;
             padding: 30px 20px;
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .step-card:hover {
-            background: rgba(255, 107, 53, 0.1);
-            border-color: rgba(255, 107, 53, 0.3);
-            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.2);
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(255, 107, 53, 0.25);
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.12);
         }
 
         @media (max-width: 768px) {
@@ -665,7 +724,7 @@
         }
 
         .step-card p {
-            color: var(--text-muted);
+            color: #1a5c5c;
             line-height: 1.6;
         }
 
@@ -680,18 +739,18 @@
         .benefits-list {
             max-width: 700px;
             margin: 0 auto 50px;
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.6);
             padding: 30px;
             border-radius: 20px;
-            border: 1px solid var(--card-border);
+            border: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .benefit-item {
             display: flex;
             align-items: flex-start;
             padding: 15px 0;
-            border-bottom: 1px solid var(--card-border);
-            color: var(--text-muted);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            color: #1a4d4d;
         }
 
         .benefit-item:last-child {
@@ -699,11 +758,10 @@
         }
 
         .check-icon {
-            color: #4ecca3;
+            color: #2d9d7a;
             font-size: 24px;
             margin-right: 15px;
             flex-shrink: 0;
-            filter: drop-shadow(0 0 5px rgba(78, 204, 163, 0.5));
         }
 
         /* Why This Works */
@@ -723,20 +781,20 @@
         }
 
         .reason-card {
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
             padding: 30px;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--card-border);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .reason-card:hover {
-            background: rgba(255, 107, 53, 0.1);
-            border-color: rgba(255, 107, 53, 0.3);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.2);
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(255, 107, 53, 0.25);
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.12);
         }
 
         @media (max-width: 768px) {
@@ -749,7 +807,6 @@
         .reason-icon {
             font-size: 50px;
             margin-bottom: 15px;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
         }
 
         @media (max-width: 768px) {
@@ -762,7 +819,7 @@
         .reason-card h3 {
             font-size: 18px;
             margin-bottom: 10px;
-            color: var(--text-heading);
+            color: #0d3d3d;
         }
 
         @media (max-width: 768px) {
@@ -774,7 +831,7 @@
 
         .reason-card p {
             font-size: 14px;
-            color: var(--text-muted);
+            color: #1a5c5c;
             line-height: 1.5;
         }
 
@@ -804,12 +861,12 @@
         .audience-card {
             text-align: center;
             padding: 30px 20px;
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
-            border: 2px solid var(--card-border);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 20px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
         }
 
         @media (max-width: 768px) {
@@ -829,7 +886,6 @@
         .audience-icon {
             font-size: 50px;
             margin-bottom: 15px;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
         }
 
         @media (max-width: 768px) {
@@ -841,12 +897,12 @@
 
         .audience-card h3 {
             font-size: 18px;
-            color: var(--text-heading);
+            color: #0d3d3d;
             font-weight: 600;
         }
 
         .audience-tagline {
-            color: var(--text-heading);
+            color: #1a5c5c;
         }
 
         @media (max-width: 768px) {
@@ -947,7 +1003,7 @@
 
         .faq-item {
             margin-bottom: 25px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid rgba(13, 107, 111, 0.2);
             padding-bottom: 25px;
         }
 
@@ -958,18 +1014,18 @@
         .faq-question {
             font-size: 18px;
             font-weight: 700;
-            color: #222;
+            color: #0d3d3d;
             margin-bottom: 10px;
         }
 
         .faq-answer {
-            color: #666;
+            color: #1a5c5c;
             line-height: 1.6;
         }
 
         /* CTA Section */
         .cta-section {
-            background: #f8f9fa;
+            background: rgba(221, 244, 245, 0.9);
             text-align: center;
             padding: 60px 20px;
         }
@@ -980,13 +1036,13 @@
 
         /* Footer */
         footer {
-            background: var(--footer-bg);
+            background: rgba(204, 238, 240, 0.95);
             backdrop-filter: blur(10px);
-            color: var(--footer-color);
+            color: #1a5c5c;
             text-align: center;
             padding: 30px 20px;
             font-size: 14px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(13, 107, 111, 0.2);
         }
 
         /* Carousel Navigation Dots */
@@ -1227,48 +1283,6 @@
             animation: pulse 1s infinite;
         }
 
-        /* Theme switcher (check background variants) */
-        .theme-switcher {
-            position: fixed;
-            top: 12px;
-            right: 12px;
-            z-index: 2000;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            max-width: 180px;
-        }
-        .theme-switcher button {
-            padding: 8px 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.35);
-            background: rgba(0,0,0,0.4);
-            color: #fff;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .theme-switcher button:hover {
-            background: rgba(255,255,255,0.15);
-        }
-        .theme-switcher button.active {
-            box-shadow: 0 0 0 2px rgba(255,107,53,0.9);
-            border-color: #FF6B35;
-        }
-        body.bg-theme-sky .theme-switcher button,
-        body.bg-theme-turquoise .theme-switcher button,
-        body.bg-theme-sandy .theme-switcher button {
-            border-color: rgba(0,0,0,0.2);
-            color: #333;
-            background: rgba(255,255,255,0.85);
-        }
-        body.bg-theme-sky .theme-switcher button.active,
-        body.bg-theme-turquoise .theme-switcher button.active,
-        body.bg-theme-sandy .theme-switcher button.active {
-            border-color: #FF6B35;
-            box-shadow: 0 0 0 2px rgba(255,107,53,0.5);
-        }
-
         /* Smooth page scroll */
         html {
             scroll-behavior: smooth;
@@ -1285,9 +1299,153 @@
         }
 
         .loading-shimmer {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background: linear-gradient(90deg, #ddf4f5 25%, #cceef0 50%, #ddf4f5 75%);
             background-size: 1000px 100%;
             animation: shimmer 2s infinite;
+        }
+
+        /* Order modal */
+        .order-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            z-index: 4000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .order-modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .order-modal {
+            background: #fff;
+            border-radius: 20px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .order-modal-overlay.open .order-modal {
+            transform: scale(1);
+        }
+
+        .order-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: rgba(13, 107, 111, 0.12);
+            color: #0b7a7f;
+            font-size: 24px;
+            line-height: 1;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .order-modal-close:hover {
+            background: rgba(13, 107, 111, 0.25);
+        }
+
+        .order-modal-content {
+            padding: 32px 28px 28px;
+        }
+
+        .order-modal-content h3 {
+            font-size: 1.5rem;
+            color: #0d3d3d;
+            margin-bottom: 8px;
+        }
+
+        .order-modal-content p {
+            color: #1a5c5c;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .order-form label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #0d3d3d;
+            margin-bottom: 6px;
+        }
+
+        .order-form input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid rgba(13, 107, 111, 0.3);
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        .order-form input:focus {
+            outline: none;
+            border-color: #0b7a7f;
+            box-shadow: 0 0 0 3px rgba(11, 122, 127, 0.15);
+        }
+
+        .order-form .form-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .order-form .form-row > div {
+            flex: 1;
+        }
+
+        .order-form button[type="submit"] {
+            width: 100%;
+            padding: 14px 24px;
+            background: #FF6B35;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .order-form button[type="submit"]:hover {
+            background: #e55a2b;
+            transform: translateY(-1px);
+        }
+
+        .order-form .form-message {
+            font-size: 14px;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .order-form .form-message.success {
+            color: #0a6b6f;
+            display: block;
+        }
+
+        .order-form .form-message.error {
+            color: #c73e4a;
+            display: block;
         }
     </style>
 </head>
@@ -1295,49 +1453,58 @@
 
     <!-- HERO SECTION WITH CAROUSEL -->
     <section class="hero">
+        <!-- Top strip: scrolling "sale X% off" (percent filled by JS) -->
+        <div class="hero-top-strip" id="heroTopStrip" aria-hidden="true" data-old-price="25" data-current-price="9.99">
+            <div class="hero-top-strip-inner">
+                <span class="strip-text-part"></span>
+                <span class="strip-text-part"></span>
+            </div>
+        </div>
         <!-- Hero Content ABOVE carousel -->
         <div class="hero-content">
             <h1>Capture Valencia the right way</h1>
             <p class="hero-subtitle">Same place. Different angle. Completely different photo.</p>
         </div>
 
+        <p class="carousel-photo-hint" aria-hidden="true"><span>Click on photo for fullscreen view</span></p>
+
         <div class="carousel">
             <!-- Desktop Split-Screen Slides (hidden on mobile) -->
             <div class="carousel-slide active desktop-only">
                 <div class="split-container">
-                    <div class="split-side without">
-                        <img src="images/bad1.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
-                        <div class="split-label">❌ Without the guide</div>
-                    </div>
                     <div class="split-side with">
-                        <img src="images/good1.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="images/good1.jpg" alt="Valencia - Perfect angle">
                         <div class="split-label">✅ With the guide</div>
+                    </div>
+                    <div class="split-side without">
+                        <img src="images/bad1.jpg" alt="Valencia - Wrong angle">
+                        <div class="split-label">❌ Without the guide</div>
                     </div>
                 </div>
             </div>
 
             <div class="carousel-slide desktop-only">
                 <div class="split-container">
-                    <div class="split-side without">
-                        <img src="images/bad2.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
-                        <div class="split-label">❌ Without the guide</div>
-                    </div>
                     <div class="split-side with">
-                        <img src="images/good2.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="images/good2.jpg" alt="Valencia - Perfect angle">
                         <div class="split-label">✅ With the guide</div>
+                    </div>
+                    <div class="split-side without">
+                        <img src="images/bad2.jpg" alt="Valencia - Wrong angle">
+                        <div class="split-label">❌ Without the guide</div>
                     </div>
                 </div>
             </div>
 
             <div class="carousel-slide desktop-only">
                 <div class="split-container">
-                    <div class="split-side without">
-                        <img src="images/bad3.jpg" alt="Valencia - Wrong angle" style="width: 100%; height: 100%; object-fit: cover;">
-                        <div class="split-label">❌ Without the guide</div>
-                    </div>
                     <div class="split-side with">
-                        <img src="images/good3.jpg" alt="Valencia - Perfect angle" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="images/good3.jpg" alt="Valencia - Perfect angle">
                         <div class="split-label">✅ With the guide</div>
+                    </div>
+                    <div class="split-side without">
+                        <img src="images/bad3.jpg" alt="Valencia - Wrong angle">
+                        <div class="split-label">❌ Without the guide</div>
                     </div>
                 </div>
             </div>
@@ -1351,6 +1518,7 @@
 
             <!-- Mobile: split comparison image -->
             <div class="carousel-slide active mobile-only">
+                <p class="carousel-photo-hint-mobile" aria-hidden="true"><span>Click on photo for fullscreen view</span></p>
                 <div class="mobile-pair">
                     <div class="mobile-photo-card with">
                         <img src="images/good1.jpg" alt="Valencia - Perfect angle">
@@ -1364,6 +1532,7 @@
             </div>
 
             <div class="carousel-slide mobile-only">
+                <p class="carousel-photo-hint-mobile" aria-hidden="true"><span>Click on photo for fullscreen view</span></p>
                 <div class="mobile-pair">
                     <div class="mobile-photo-card with">
                         <img src="images/good2.jpg" alt="Valencia - Perfect angle">
@@ -1377,6 +1546,7 @@
             </div>
 
             <div class="carousel-slide mobile-only">
+                <p class="carousel-photo-hint-mobile" aria-hidden="true"><span>Click on photo for fullscreen view</span></p>
                 <div class="mobile-pair">
                     <div class="mobile-photo-card with">
                         <img src="images/good3.jpg" alt="Valencia - Perfect angle">
@@ -1419,7 +1589,7 @@
         <!-- Hero CTA BELOW carousel -->
         <div class="hero-cta-wrapper">
             <div class="limited-badge">Limited offer</div>
-            <a href="#buy" class="cta-button">Buy now for €9.99</a>
+            <a href="#buy" class="cta-button open-order-modal">Buy now for €9.99</a>
         </div>
     </section>
 
@@ -1564,7 +1734,7 @@
                     <li>Free updates</li>
                     <li>Works instantly after payment</li>
                 </ul>
-                <a href="#checkout" class="cta-button">Get instant access for €9.99</a>
+                <a href="#checkout" class="cta-button open-order-modal">Get instant access for €9.99</a>
             </div>
         </div>
     </section>
@@ -1574,7 +1744,7 @@
         <div class="floating-btn">
             <span class="btn-section-label" id="btnSectionLabel"></span>
             <span class="limited-badge">Limited offer</span>
-            <a href="#buy" class="floating-buy-btn" id="floatingBuyBtn">Buy now for €9.99</a>
+            <a href="#buy" class="floating-buy-btn open-order-modal" id="floatingBuyBtn">Buy now for €9.99</a>
         </div>
     </div>
 
@@ -1589,16 +1759,41 @@
         <img id="photoLightboxImage" alt="Fullscreen photo preview">
     </div>
 
-    <!-- THEME SWITCHER (перевірка кольору фону) -->
-    <div class="theme-switcher" aria-label="Варіанти фону">
-        <button type="button" data-theme="" class="active">Dark</button>
-        <button type="button" data-theme="sky">🌅 Sky</button>
-        <button type="button" data-theme="turquoise">🌊 Turquoise</button>
-        <button type="button" data-theme="sandy">🌤 Sandy</button>
+    <!-- ORDER MODAL -->
+    <div class="order-modal-overlay" id="orderModalOverlay" aria-hidden="true">
+        <div class="order-modal">
+            <button type="button" class="order-modal-close" id="orderModalClose" aria-label="Close">×</button>
+            <div class="order-modal-content">
+                <h3>Leave your contacts</h3>
+                <p>We'll send you the Valencia Photo Guide (€9.99) and payment link.</p>
+                <form class="order-form" id="orderForm">
+                    <label for="orderName">Name *</label>
+                    <input type="text" id="orderName" name="name" required placeholder="Your name">
+                    <label for="orderEmail">Email *</label>
+                    <input type="email" id="orderEmail" name="email" placeholder="your@email.com">
+                    <label for="orderPhone">Phone</label>
+                    <input type="tel" id="orderPhone" name="phone" placeholder="+34 600 000 000">
+                    <p class="form-message" id="orderFormMessage"></p>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
     </div>
 
     <!-- JAVASCRIPT -->
     <script>
+        // Sale strip: compute discount % from old/current price and fill text
+        (function initSaleStrip() {
+            var strip = document.getElementById('heroTopStrip');
+            if (!strip) return;
+            var oldPrice = parseFloat(strip.getAttribute('data-old-price')) || 25;
+            var currentPrice = parseFloat(strip.getAttribute('data-current-price')) || 9.99;
+            var percent = Math.round((1 - currentPrice / oldPrice) * 100);
+            if (percent < 1) percent = 0;
+            var repeat = 'sale ' + percent + '% off · sale ' + percent + '% off · sale ' + percent + '% off · sale ' + percent + '% off · sale ' + percent + '% off · sale ' + percent + '% off · sale ' + percent + '% off · sale ' + percent + '% off · sale ' + percent + '% off · sale ' + percent + '% off · ';
+            strip.querySelectorAll('.strip-text-part').forEach(function (el) { el.textContent = repeat; });
+        })();
+
         // Carousel functionality
         let currentSlide = 0;
         let autoplayInterval;
@@ -1715,32 +1910,6 @@
         // Start carousel autoplay
         startAutoplay();
 
-        // Theme switcher (background variants)
-        (function() {
-            var KEY = 'valensia-bg-theme';
-            var buttons = document.querySelectorAll('.theme-switcher button[data-theme]');
-            var allBtns = document.querySelectorAll('.theme-switcher button');
-            function setTheme(theme) {
-                document.body.classList.remove('bg-theme-sky', 'bg-theme-turquoise', 'bg-theme-sandy');
-                if (theme === 'sky') document.body.classList.add('bg-theme-sky');
-                else if (theme === 'turquoise') document.body.classList.add('bg-theme-turquoise');
-                else if (theme === 'sandy') document.body.classList.add('bg-theme-sandy');
-                allBtns.forEach(function(btn) {
-                    btn.classList.toggle('active', (btn.getAttribute('data-theme') || '') === theme);
-                });
-                try { localStorage.setItem(KEY, theme); } catch (e) {}
-            }
-            allBtns.forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    setTheme(btn.getAttribute('data-theme') || '');
-                });
-            });
-            try {
-                var saved = localStorage.getItem(KEY);
-                if (saved) setTheme(saved);
-            } catch (e) {}
-        })();
-
         // Photo fullscreen preview (lightbox)
         const photoLightbox = document.getElementById('photoLightbox');
         const photoLightboxImage = document.getElementById('photoLightboxImage');
@@ -1782,6 +1951,86 @@
             if (e.key === 'Escape') {
                 closePhotoLightbox();
             }
+        });
+
+        // ─── ORDER MODAL ─────────────────────────────────────────────
+        const orderModalOverlay = document.getElementById('orderModalOverlay');
+        const orderModalClose = document.getElementById('orderModalClose');
+        const orderForm = document.getElementById('orderForm');
+        const orderFormMessage = document.getElementById('orderFormMessage');
+
+        // URL вашего API для отправки в Telegram (см. инструкцию в TELEGRAM_SETUP.md или api/telegram.php)
+        const ORDER_API_URL = 'api/telegram.php';
+
+        document.querySelectorAll('.open-order-modal').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                orderModalOverlay.classList.add('open');
+                orderModalOverlay.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closeOrderModal() {
+            orderModalOverlay.classList.remove('open');
+            orderModalOverlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        orderModalClose.addEventListener('click', closeOrderModal);
+        orderModalOverlay.addEventListener('click', function(e) {
+            if (e.target === orderModalOverlay) closeOrderModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && orderModalOverlay.classList.contains('open')) {
+                closeOrderModal();
+            }
+        });
+
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('orderName').value.trim();
+            const email = document.getElementById('orderEmail').value.trim();
+            const phone = document.getElementById('orderPhone').value.trim();
+            if (!name) {
+                orderFormMessage.textContent = 'Please enter your name.';
+                orderFormMessage.className = 'form-message error';
+                return;
+            }
+            if (!email && !phone) {
+                orderFormMessage.textContent = 'Please enter email or phone.';
+                orderFormMessage.className = 'form-message error';
+                return;
+            }
+            orderFormMessage.textContent = 'Sending...';
+            orderFormMessage.className = 'form-message';
+            orderFormMessage.style.display = 'block';
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('phone', phone);
+
+            fetch(ORDER_API_URL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.ok) {
+                    orderFormMessage.textContent = 'Thank you! We will contact you shortly.';
+                    orderFormMessage.className = 'form-message success';
+                    orderForm.reset();
+                    setTimeout(closeOrderModal, 2000);
+                } else {
+                    orderFormMessage.textContent = data.error || 'Something went wrong. Try again.';
+                    orderFormMessage.className = 'form-message error';
+                }
+            })
+            .catch(() => {
+                orderFormMessage.textContent = 'Network error. Check ORDER_API_URL or use telegram.php.';
+                orderFormMessage.className = 'form-message error';
+            });
         });
 
         // ─── SMART FLOATING BUTTON ───────────────────────────────────
@@ -1829,6 +2078,7 @@
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                if (this.classList.contains('open-order-modal')) return;
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
