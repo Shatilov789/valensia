@@ -114,6 +114,59 @@
             -webkit-backdrop-filter: blur(6px);
         }
 
+        @media (max-width: 768px) {
+            .hero-glass { display: none; }
+            .hero { background: #006997; }
+            .hero-bg { display: none; }
+        }
+
+        /* ─── 100 POINTS (mobile only) ───────────────── */
+        .points-section {
+            display: none;
+            position: relative;
+            background: #fff;
+            padding: 24px 16px;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            overflow: hidden;
+        }
+
+        .points-glass {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .points-glass-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .points-glass-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .points-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .points-section { display: flex; }
+            .hero .hero-badge { display: none; }
+            .hero .btn-view-details { display: none; }
+        }
+
         .hero-content {
             position: relative;
             z-index: 5;
@@ -318,6 +371,37 @@
             color: #424656;
             text-align: center;
             line-height: 1.5;
+        }
+
+        .ba-icon-circle {
+            display: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+            color: #fff;
+        }
+
+        .ba-icon-bad { background: #e53935; }
+        .ba-icon-good { background: #006997; }
+
+        .mobile-cards-section { display: none; }
+
+        .benefit-icon {
+            display: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #2a3189;
+            color: #fff;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
         }
 
         /* ─── BENEFITS (WHY YOU'LL LOVE) ─────────────── */
@@ -977,73 +1061,231 @@
 
         .mobile-overlay.open { display: block; }
 
-        /* ─── RESPONSIVE ─────────────────────────────── */
-        @media (max-width: 1024px) {
-            .header { padding: 12px 24px; }
+        /* ─── RESPONSIVE (matches Figma mobile 402px) ── */
+        @media (max-width: 768px) {
+            /* Header: 68px, logo + cta + burger */
+            .header {
+                padding: 12px 16px;
+                height: 68px;
+                gap: 12px;
+            }
             .header-nav { display: none; }
-            .header-cta { display: none; }
-            .burger-btn { display: block; }
+            .header-cta {
+                display: block;
+                margin-left: auto;
+            }
+            .header-cta-btn {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+            .burger-btn { display: block; flex-shrink: 0; }
             .mobile-menu { display: flex; right: -100%; }
 
-            .hero { height: auto; min-height: 500px; }
-            .hero-content {
+            /* Hero: vertical, text above image */
+            .hero {
+                height: auto;
+                min-height: auto;
                 flex-direction: column;
-                padding: 24px;
             }
+            .hero-content {
+                position: relative;
+                flex-direction: column;
+                padding: 16px;
+                gap: 16px;
+            }
+            .hero-text { max-width: 100%; }
+            .hero-title-block { padding: 0; gap: 16px; }
+            .hero-title { font-size: 36px; }
+            .hero-subtitle { font-size: 20px; }
+            .hero-desc { font-size: 16px; }
+            .hero-badge { font-size: 36px; }
             .hero-photo {
                 position: relative;
                 right: auto;
                 top: auto;
                 bottom: auto;
                 width: 100%;
+                height: 609px;
+            }
+
+            /* Cards: hide inside hero, show separate mobile section */
+            .hero-cards { display: none; }
+            .mobile-cards-section {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                padding: 24px 16px;
+                background: #006997;
+            }
+            .mobile-cards-section .hero-card {
+                padding: 24px;
+            }
+            .mobile-cards-section .hero-card:last-child {
+                grid-column: 1;
+            }
+
+            /* Section titles */
+            .section-title { font-size: 32px; }
+
+            /* Before/After: side by side small */
+            .before-after { padding: 24px 16px; gap: 24px; }
+            .ba-grid {
+                flex-direction: row;
+                gap: 20px;
+            }
+            .ba-card {
+                width: 175px;
+                flex: 1;
+            }
+            .ba-card-header {
+                padding: 0 4px;
+                height: auto;
+                min-height: 52px;
+                gap: 8px;
+                flex-direction: row;
+                align-items: center;
+            }
+            .ba-icon-circle { display: flex; }
+            .ba-card:first-child .ba-name { display: none; }
+            .ba-card:first-child .ba-sub { display: block !important; font-size: 13px; font-weight: 500; color: #000; }
+            .ba-card:last-child .ba-name { font-size: 13px; font-weight: 500; }
+            .ba-card-photo { height: 260px; }
+            .ba-card-footer { padding: 8px; font-size: 14px; }
+            .ba-card-footer .stats { gap: 12px; }
+            .ba-card:last-child .ba-card-footer .stat:first-child { color: #e53935; }
+            .ba-caption { font-size: 16px; }
+
+            /* Benefits: stacked, photo full-width below */
+            .benefits { padding: 24px 16px; }
+            .benefits-content { flex-direction: column; }
+            .benefits-cards { max-width: 100%; gap: 24px; }
+            .benefit-card {
+                padding: 18px;
+                gap: 12px;
+                border-left: 4px solid #2a3189;
+                background: #fff;
+            }
+            .benefit-icon { display: flex; }
+            .benefits-photo { max-width: 100%; }
+            .benefits-photo img { height: 550px; width: 100%; }
+
+            /* How it works: horizontal rows */
+            .how-it-works { padding: 24px 16px; gap: 24px; }
+            .how-it-works .section-title { color: #4f7f88; }
+            .steps-row {
+                flex-direction: column;
+                gap: 24px;
+            }
+            .step-card {
+                flex-direction: row;
+                gap: 20px;
+                padding: 16px;
+            }
+            .step-card .step-text {
+                flex: 1;
+                gap: 8px;
+                min-width: 0;
+            }
+            .step-card .step-num { font-size: 24px; }
+            .step-card .step-name { font-size: 18px; }
+            .step-card .step-desc { font-size: 14px; }
+            .step-card .step-img {
+                width: 171px;
+                height: 175px;
+                flex-shrink: 0;
+                aspect-ratio: auto;
+            }
+
+            /* Perfect for: single column stacked */
+            .perfect-for { padding: 24px 16px; }
+            .gallery-grid { gap: 0; }
+            .gallery-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            .gallery-item {
                 height: 400px;
             }
-            .hero-title { font-size: 36px; }
-            .hero-subtitle { font-size: 22px; }
-            .hero-cards { flex-direction: column; gap: 12px; }
+            .gallery-label {
+                font-size: 24px;
+                padding: 14px 24px;
+            }
+            .perfect-for .section-title { color: #fffde7; }
 
-            .before-after { padding: 40px 24px; }
-            .section-title { font-size: 36px; }
-            .ba-grid { flex-direction: column; align-items: center; }
-            .ba-card { width: 100%; max-width: 410px; }
-            .ba-card-photo { height: 400px; }
-
-            .benefits { padding: 40px 24px; }
-            .benefits-content { flex-direction: column; }
-            .benefits-cards { max-width: 100%; }
-            .benefits-photo { max-width: 100%; }
-            .benefits-photo img { height: 400px; }
-
-            .how-it-works { padding: 40px 24px; }
-            .steps-row { flex-direction: column; gap: 16px; }
-
-            .perfect-for { padding: 40px 24px; }
-            .gallery-row { flex-direction: column; }
-            .gallery-item { height: 400px; }
-            .gallery-label { font-size: 24px; }
-
-            .what-you-get { padding: 40px 24px; }
-            .wyg-columns { flex-direction: column; }
-            .wyg-item { font-size: 18px; }
+            /* What you get: stacked */
+            .what-you-get { padding: 24px 16px; }
+            .what-you-get-inner { gap: 24px; }
+            .wyg-columns {
+                flex-direction: column;
+                gap: 24px;
+            }
+            .wyg-col h3 { font-size: 20px; margin-bottom: 8px; }
+            .wyg-item { font-size: 16px; }
             .wyg-iphone { display: none; }
 
-            .cta-section { padding: 40px 24px; }
-            .cta-content { flex-direction: column; }
-            .cta-photo-wrap img { height: 400px; }
-            .cta-card { padding: 32px 24px; gap: 32px; }
-            .cta-card .cta-title { font-size: 36px; }
+            /* CTA: card above photo */
+            .cta-section { padding: 24px 16px; }
+            .cta-inner { gap: 24px; }
+            .cta-content {
+                flex-direction: column-reverse;
+            }
+            .cta-card {
+                padding: 24px;
+                gap: 24px;
+            }
+            .cta-card .cta-title {
+                font-family: 'Tenor Sans', serif;
+                font-size: 24px;
+            }
+            .cta-features { gap: 12px; }
+            .cta-feature { font-size: 16px; gap: 4px; }
             .cta-price-new { font-size: 48px; }
-            .cta-feature { font-size: 20px; }
-
-            .footer {
-                flex-direction: column;
-                padding: 40px 24px;
-                gap: 32px;
+            .cta-price-old { font-size: 24px; }
+            .cta-buy-btn {
+                width: 100%;
+                max-width: 288px;
+                padding: 14px 20px;
+                font-size: 18px;
+                justify-content: center;
+            }
+            .cta-photo-wrap img { height: 402px; }
+            .cta-photo-banner {
+                font-family: 'Tenor Sans', serif;
+                font-size: 21px;
+                padding: 10px 0;
+                background: #2b6a95;
             }
 
+            /* Footer: vertical, compact */
+            .footer {
+                flex-direction: column;
+                padding: 24px 16px;
+                gap: 24px;
+            }
+            .footer-payments { display: none; }
+            .footer-logo img { height: 48px; }
             .footer-brand { font-size: 24px; }
             .footer-contacts h4 { font-size: 24px; }
-            .footer-contacts p { font-size: 18px; }
+            .footer-contacts p { font-size: 16px; font-weight: 300; }
+            .footer-social-icon { width: 32px; height: 32px; padding: 4px; }
+            .footer-social-icon svg { width: 18px; height: 18px; }
+            .footer-social { gap: 20px; }
+            .footer-copyright { font-size: 14px; }
+            .footer-menu { display: none; }
+        }
+
+        /* Tablet bridge */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .header { padding: 12px 40px; }
+            .header-nav a { font-size: 16px; padding: 8px; }
+            .hero-photo { width: 400px; right: 40px; }
+            .before-after { padding: 60px 40px; }
+            .benefits { padding: 60px 40px; }
+            .how-it-works { padding: 60px 40px; }
+            .perfect-for { padding: 60px 40px; }
+            .what-you-get { padding: 60px 40px; }
+            .cta-section { padding: 60px 40px; }
+            .footer { padding: 60px 40px; }
         }
     </style>
     <!-- Meta Pixel Code -->
@@ -1134,12 +1376,38 @@
         </div>
     </section>
 
+    <!-- 100 POINTS (mobile only) -->
+    <section class="points-section">
+        <div class="points-glass">
+            <img src="figma-images/hero-bg.png" alt="" class="points-glass-bg">
+            <div class="points-glass-overlay"></div>
+        </div>
+        <div class="points-content">
+            <a href="#get-the-guide" class="btn-view-details">View details</a>
+            <p class="hero-badge" style="text-align:center">100 best spots</p>
+        </div>
+    </section>
+
+    <!-- HERO CARDS (mobile only, after points) -->
+    <div class="mobile-cards-section">
+        <div class="hero-card">
+            <p>Where to stand,<br>how to frame.</p>
+        </div>
+        <div class="hero-card">
+            <p>No photographer &mdash; just your phone and the guide.</p>
+        </div>
+        <div class="hero-card">
+            <p>Map with the<br>100 best spots.</p>
+        </div>
+    </div>
+
     <!-- BEFORE / AFTER -->
     <section class="before-after" id="before-after">
         <h2 class="section-title">Before / After</h2>
         <div class="ba-grid">
             <div class="ba-card">
                 <div class="ba-card-header">
+                    <span class="ba-icon-circle ba-icon-bad">✕</span>
                     <span class="ba-name" style="color:#000">Without the Guide</span>
                     <span class="ba-sub">What most people shoot</span>
                 </div>
@@ -1154,6 +1422,7 @@
             </div>
             <div class="ba-card">
                 <div class="ba-card-header">
+                    <span class="ba-icon-circle ba-icon-good">✓</span>
                     <span class="ba-name" style="color:#424656">With the Guide RAKURS</span>
                 </div>
                 <img src="figma-images/hero-person.png" alt="With the Guide" class="ba-card-photo">
@@ -1176,14 +1445,17 @@
             <div class="benefits-content">
                 <div class="benefits-cards">
                     <div class="benefit-card">
+                        <span class="benefit-icon">&euro;</span>
                         <h3>Get stunning photos in Valencia &mdash; without the &euro;200 price tag</h3>
                         <p>Most photoshoots here cost &euro;100&ndash;200. With our guide, you get the same iconic angles, hidden spots, and pro tips &mdash; and shoot them yourself, completely free.</p>
                     </div>
                     <div class="benefit-card">
+                        <span class="benefit-icon">&#9788;</span>
                         <h3>Enjoy Your Trip &mdash; Not the Research</h3>
                         <p>The average tourist spends 6&ndash;8 hours hunting for the perfect photo spots and angles. With our guide, you skip all that &mdash; every location is ready to go, so you spend that time actually exploring, eating, and living the city.</p>
                     </div>
                     <div class="benefit-card">
+                        <span class="benefit-icon">&#9776;</span>
                         <h3>100 photos<br>All of them a vibe</h3>
                         <p>Real talk &mdash; out of 100 shots, maybe 2&ndash;3 don't flop. Our guide gets you to the right spots with the right angles, so your whole camera roll is actually postable &mdash; straight from Valencia's most iconic locations.</p>
                     </div>
