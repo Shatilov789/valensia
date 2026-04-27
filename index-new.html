@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valencia Photo Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #424656;
+            background: #fff7ff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { display: block; max-width: 100%; }
+        a { text-decoration: none; color: inherit; }
+        html { scroll-behavior: smooth; }
+
+        /* ─── HEADER ─────────────────────────────────── */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #006997;
+            padding: 12px 80px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            height: 80px;
+        }
+
+        .header-logo { height: 36px; width: auto; flex-shrink: 0; }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            gap: 0;
+        }
+
+        .header-nav a {
+            color: #fff7ff;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 12px;
+            white-space: nowrap;
+            transition: opacity 0.2s;
+        }
+
+        .header-nav a:hover { opacity: 0.8; }
+
+        .header-cta {
+            margin-left: 16px;
+            flex-shrink: 0;
+        }
+
+        .header-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #fff;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            padding: 12px 12px;
+            font-size: 16px;
+            color: #2a3189;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .header-cta-btn:hover { opacity: 0.9; }
+        .header-cta-btn .old { font-weight: 300; text-decoration: line-through; }
+        .header-cta-btn .new { font-weight: 500; }
+        .header-cta-btn .label { font-weight: 500; }
+
+        /* ─── HERO / HEADLINE ────────────────────────── */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 998px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-glass {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-glass > div {
+            flex: 1;
+            background: rgba(0,0,0,0.25);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 24px 80px;
+            gap: 24px;
+            align-items: stretch;
+            height: 100%;
+        }
+
+        .hero-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 24px;
+            max-width: 628px;
+        }
+
+        .hero-title-block {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 24px 0;
+        }
+
+        .hero-title {
+            font-family: 'Tenor Sans', serif;
+            font-size: 62px;
+            font-weight: 400;
+            color: #fff7ff;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-family: 'Tenor Sans', serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: #fff7ff;
+            line-height: 1.3;
+        }
+
+        .hero-desc {
+            font-family: 'Tenor Sans', serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: #fff7ff;
+            line-height: 1.5;
+        }
+
+        .btn-view-details {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background: #fff;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            color: #2a3189;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            width: fit-content;
+        }
+
+        .btn-view-details:hover { opacity: 0.9; }
+
+        .hero-badge {
+            font-size: 48px;
+            font-weight: 500;
+            color: #fbed56;
+            line-height: 1;
+        }
+
+        .hero-cards {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .hero-card {
+            background: #fff;
+            padding: 24px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .hero-card p {
+            font-size: 16px;
+            font-weight: 400;
+            color: #2a3189;
+            line-height: 1.5;
+        }
+
+        .hero-photo {
+            position: absolute;
+            right: 80px;
+            top: 24px;
+            bottom: 24px;
+            width: 628px;
+            z-index: 6;
+        }
+
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ─── BEFORE / AFTER ─────────────────────────── */
+        .before-after {
+            padding: 80px;
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+            border-radius: 24px;
+        }
+
+        .section-title {
+            font-size: 64px;
+            font-weight: 600;
+            color: #424656;
+            line-height: 1.2;
+        }
+
+        .ba-grid {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+        }
+
+        .ba-card {
+            width: 410px;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .ba-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 12px;
+            height: 64px;
+        }
+
+        .ba-card-header .ba-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .ba-card-header .ba-name {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .ba-card-header .ba-sub {
+            font-size: 20px;
+            font-weight: 400;
+            color: #424656;
+        }
+
+        .ba-card-photo {
+            width: 100%;
+            height: 606px;
+            object-fit: cover;
+        }
+
+        .ba-card-footer {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 12px;
+            font-size: 20px;
+            color: #424656;
+        }
+
+        .ba-card-footer .stats {
+            display: flex;
+            gap: 24px;
+        }
+
+        .ba-card-footer .stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ba-caption {
+            font-family: 'Tenor Sans', serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: #424656;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        /* ─── BENEFITS (WHY YOU'LL LOVE) ─────────────── */
+        .benefits {
+            background: #fff7ff;
+            padding: 80px;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .benefits-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+        }
+
+        .benefits-content {
+            display: flex;
+            gap: 24px;
+        }
+
+        .benefits-cards {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 519px;
+        }
+
+        .benefit-card {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .benefit-card h3 {
+            font-size: 20px;
+            font-weight: 400;
+            color: #2a3189;
+        }
+
+        .benefit-card p {
+            font-size: 16px;
+            font-weight: 400;
+            color: #2a3189;
+            line-height: 1.6;
+        }
+
+        .benefits-photo {
+            flex: 1;
+            max-width: 519px;
+        }
+
+        .benefits-photo img {
+            width: 100%;
+            height: 720px;
+            object-fit: cover;
+        }
+
+        /* ─── HOW IT WORKS ───────────────────────────── */
+        .how-it-works {
+            padding: 80px;
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+        }
+
+        .steps-row {
+            display: flex;
+            gap: 0;
+        }
+
+        .step-card {
+            flex: 1;
+            background: #d7e1eb;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .step-card .step-text {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .step-card .step-num {
+            font-size: 32px;
+            font-weight: 600;
+            color: #424656;
+        }
+
+        .step-card .step-name {
+            font-size: 24px;
+            font-weight: 500;
+            color: #424656;
+        }
+
+        .step-card .step-desc {
+            font-size: 18px;
+            font-weight: 400;
+            color: #424656;
+            line-height: 1.4;
+        }
+
+        .step-card .step-img {
+            width: 100%;
+            aspect-ratio: 362/278;
+            object-fit: cover;
+        }
+
+        /* ─── PERFECT FOR ────────────────────────────── */
+        .perfect-for {
+            background: #3d9ccd;
+            padding: 80px;
+        }
+
+        .perfect-for-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+        }
+
+        .perfect-for .section-title { color: #fff7ff; }
+
+        .gallery-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .gallery-row {
+            display: flex;
+            gap: 24px;
+        }
+
+        .gallery-item {
+            flex: 1;
+            height: 678px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            flex: 1;
+            object-fit: cover;
+        }
+
+        .gallery-label {
+            padding: 24px;
+            background: rgba(108, 162, 185, 0.85);
+            font-size: 32px;
+            font-weight: 600;
+            color: #fff7ff;
+        }
+
+        .gallery-item:nth-child(2) .gallery-label { background: rgba(88, 117, 123, 0.85); }
+        .gallery-row:nth-child(2) .gallery-item:first-child .gallery-label { background: rgba(123, 132, 131, 0.85); }
+        .gallery-row:nth-child(2) .gallery-item:nth-child(2) .gallery-label { background: rgba(112, 99, 111, 0.85); }
+
+        /* ─── WHAT YOU GET ───────────────────────────── */
+        .what-you-get {
+            background: #fff7ff;
+            padding: 80px;
+            position: relative;
+        }
+
+        .what-you-get-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+        }
+
+        .wyg-columns {
+            display: flex;
+            gap: 24px;
+        }
+
+        .wyg-col {
+            flex: 1;
+            background: #d7e1eb;
+            padding: 24px;
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .wyg-col h3 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #424656;
+            margin-bottom: 12px;
+        }
+
+        .wyg-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 500;
+            color: #424656;
+            line-height: 1.4;
+        }
+
+        .wyg-item .check {
+            color: #006997;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .wyg-iphone {
+            position: absolute;
+            right: 80px;
+            bottom: -60px;
+            width: 352px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* ─── CTA / GET THE GUIDE ────────────────────── */
+        .cta-section {
+            background: #d7e1eb;
+            padding: 80px;
+        }
+
+        .cta-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+        }
+
+        .cta-content {
+            display: flex;
+            gap: 24px;
+        }
+
+        .cta-photo-wrap {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-photo-wrap img {
+            width: 100%;
+            height: 710px;
+            object-fit: cover;
+        }
+
+        .cta-photo-banner {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 0;
+            background: #3d9ccd;
+            text-align: center;
+            font-size: 32px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .cta-card {
+            flex: 1;
+            background: #006997;
+            padding: 48px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .cta-card .cta-title {
+            font-family: 'Tenor Sans', serif;
+            font-size: 54px;
+            font-weight: 400;
+            color: #fff7ff;
+            line-height: 1.1;
+        }
+
+        .cta-features {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .cta-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 28px;
+            font-weight: 500;
+            color: #fff7ff;
+        }
+
+        .cta-feature .check-icon {
+            flex-shrink: 0;
+        }
+
+        .cta-price-block {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .cta-price-new {
+            font-size: 64px;
+            font-weight: 600;
+            color: #fff7ff;
+        }
+
+        .cta-price-old {
+            font-size: 32px;
+            font-weight: 600;
+            color: #fff7ff;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .cta-buy-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #fff;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            padding: 16px 24px;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2a3189;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            width: fit-content;
+        }
+
+        .cta-buy-btn:hover { opacity: 0.9; }
+
+        .cta-buy-btn .price-small {
+            font-size: 16px;
+            font-weight: 500;
+            color: #424656;
+        }
+
+        /* ─── FOOTER ─────────────────────────────────── */
+        .footer {
+            background: #006997;
+            padding: 64px 80px;
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-payments {
+            display: flex;
+            gap: 24px;
+            flex-shrink: 0;
+        }
+
+        .footer-pay-icon {
+            width: 85px;
+            height: 85px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .footer-pay-icon img { width: 48px; height: 48px; object-fit: contain; }
+
+        .footer-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            background: #fff;
+            display: inline-flex;
+            padding: 12px;
+            width: fit-content;
+        }
+
+        .footer-logo img { height: 70px; width: auto; }
+
+        .footer-brand {
+            font-family: 'Tenor Sans', serif;
+            font-size: 36px;
+            font-weight: 400;
+            color: #fff7ff;
+        }
+
+        .footer-contacts h4 {
+            font-family: 'Tenor Sans', serif;
+            font-size: 36px;
+            font-weight: 400;
+            color: #fff;
+        }
+
+        .footer-contacts p {
+            font-family: 'Tenor Sans', serif;
+            font-size: 24px;
+            font-weight: 400;
+            color: #fff;
+            line-height: 1.5;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-social-icon {
+            width: 85px;
+            height: 85px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+        }
+
+        .footer-social-icon img { width: 48px; height: 48px; object-fit: contain; }
+
+        .footer-copyright {
+            font-family: 'Tenor Sans', serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: #fff7ff;
+        }
+
+        .footer-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .footer-menu a {
+            color: #fff7ff;
+            font-size: 20px;
+            font-weight: 400;
+            padding: 12px;
+            transition: opacity 0.2s;
+        }
+
+        .footer-menu a:hover { opacity: 0.8; }
+
+        /* ─── ORDER MODAL ────────────────────────────── */
+        .order-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            z-index: 4000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .order-modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .order-modal {
+            background: #fff;
+            border-radius: 20px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+
+        .order-modal-overlay.open .order-modal { transform: scale(1); }
+
+        .order-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: rgba(0, 105, 151, 0.12);
+            color: #006997;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .order-modal-close:hover { background: rgba(0, 105, 151, 0.25); }
+
+        .order-modal-content {
+            padding: 32px 28px 28px;
+        }
+
+        .order-modal-content h3 {
+            font-size: 1.5rem;
+            color: #006997;
+            margin-bottom: 8px;
+        }
+
+        .order-modal-content > p {
+            color: #424656;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .order-form label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #006997;
+            margin-bottom: 6px;
+        }
+
+        .order-form input,
+        .order-form select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid rgba(0, 105, 151, 0.3);
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 16px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .order-form input:focus,
+        .order-form select:focus {
+            outline: none;
+            border-color: #006997;
+            box-shadow: 0 0 0 3px rgba(0, 105, 151, 0.15);
+        }
+
+        .order-form .form-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .order-form .form-row > div { flex: 1; }
+
+        .order-form button[type="submit"] {
+            width: 100%;
+            padding: 14px 24px;
+            background: #006997;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s, transform 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .order-form button[type="submit"]:hover {
+            background: #005580;
+            transform: translateY(-1px);
+        }
+
+        .order-form .form-message {
+            font-size: 14px;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .order-form .form-message.success { color: #006997; display: block; }
+        .order-form .form-message.error { color: #c73e4a; display: block; }
+
+        /* ─── MOBILE BURGER MENU ─────────────────────── */
+        .burger-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            margin-left: auto;
+        }
+
+        .burger-btn span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: #fff;
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: #006997;
+            z-index: 200;
+            flex-direction: column;
+            padding: 80px 24px 24px;
+            gap: 8px;
+            transition: right 0.3s;
+        }
+
+        .mobile-menu.open { right: 0; }
+
+        .mobile-menu a {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 32px;
+            cursor: pointer;
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 199;
+        }
+
+        .mobile-overlay.open { display: block; }
+
+        /* ─── RESPONSIVE ─────────────────────────────── */
+        @media (max-width: 1024px) {
+            .header { padding: 12px 24px; }
+            .header-nav { display: none; }
+            .header-cta { display: none; }
+            .burger-btn { display: block; }
+            .mobile-menu { display: flex; right: -100%; }
+
+            .hero { height: auto; min-height: 500px; }
+            .hero-content {
+                flex-direction: column;
+                padding: 24px;
+            }
+            .hero-photo {
+                position: relative;
+                right: auto;
+                top: auto;
+                bottom: auto;
+                width: 100%;
+                height: 400px;
+            }
+            .hero-title { font-size: 36px; }
+            .hero-subtitle { font-size: 22px; }
+            .hero-cards { flex-direction: column; gap: 12px; }
+
+            .before-after { padding: 40px 24px; }
+            .section-title { font-size: 36px; }
+            .ba-grid { flex-direction: column; align-items: center; }
+            .ba-card { width: 100%; max-width: 410px; }
+            .ba-card-photo { height: 400px; }
+
+            .benefits { padding: 40px 24px; }
+            .benefits-content { flex-direction: column; }
+            .benefits-cards { max-width: 100%; }
+            .benefits-photo { max-width: 100%; }
+            .benefits-photo img { height: 400px; }
+
+            .how-it-works { padding: 40px 24px; }
+            .steps-row { flex-direction: column; gap: 16px; }
+
+            .perfect-for { padding: 40px 24px; }
+            .gallery-row { flex-direction: column; }
+            .gallery-item { height: 400px; }
+            .gallery-label { font-size: 24px; }
+
+            .what-you-get { padding: 40px 24px; }
+            .wyg-columns { flex-direction: column; }
+            .wyg-item { font-size: 18px; }
+            .wyg-iphone { display: none; }
+
+            .cta-section { padding: 40px 24px; }
+            .cta-content { flex-direction: column; }
+            .cta-photo-wrap img { height: 400px; }
+            .cta-card { padding: 32px 24px; gap: 32px; }
+            .cta-card .cta-title { font-size: 36px; }
+            .cta-price-new { font-size: 48px; }
+            .cta-feature { font-size: 20px; }
+
+            .footer {
+                flex-direction: column;
+                padding: 40px 24px;
+                gap: 32px;
+            }
+
+            .footer-brand { font-size: 24px; }
+            .footer-contacts h4 { font-size: 24px; }
+            .footer-contacts p { font-size: 18px; }
+        }
+    </style>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1456636979507046');
+    fbq('track', 'PageView');
+    </script>
+</head>
+<body>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1456636979507046&ev=PageView&noscript=1"
+    /></noscript>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <img src="figma-images/logo.png" alt="Valencia Photo Guide" class="header-logo">
+        <nav class="header-nav">
+            <a href="#before-after">Before/After</a>
+            <a href="#benefits">Love it</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#perfect-for">Perfect for</a>
+            <a href="#what-you-get">What you get</a>
+        </nav>
+        <div class="header-cta">
+            <a href="#get-the-guide" class="header-cta-btn open-order-modal" data-button-id="header_buy">
+                <span class="label">Get it for</span>
+                <span class="old">&euro;14,99</span>
+                <span class="new">&euro;4.99</span>
+            </a>
+        </div>
+        <button class="burger-btn" id="burgerBtn" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">&times;</button>
+        <a href="#before-after">Before/After</a>
+        <a href="#benefits">Love it</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#perfect-for">Perfect for</a>
+        <a href="#what-you-get">What you get</a>
+        <a href="#get-the-guide" class="open-order-modal" data-button-id="mobile_menu_buy">Get the Guide &mdash; &euro;4.99</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="figma-images/hero-bg.png" alt="" loading="eager">
+        </div>
+        <div class="hero-glass">
+            <div></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-title-block">
+                    <h1 class="hero-title">Valencia Photo Guide</h1>
+                    <p class="hero-subtitle">This is your personal photo guide</p>
+                    <p class="hero-desc">Handpicked photo spots with tips for<br>angles &amp; light &mdash; get perfect shots</p>
+                    <a href="#get-the-guide" class="btn-view-details">View details</a>
+                </div>
+                <p class="hero-badge">100 best spots</p>
+                <div class="hero-cards">
+                    <div class="hero-card">
+                        <p>Where to stand,<br>how to frame.</p>
+                    </div>
+                    <div class="hero-card">
+                        <p>No photographer &mdash; just your phone and the guide.</p>
+                    </div>
+                    <div class="hero-card">
+                        <p>Map with the<br>100 best spots.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-photo">
+            <img src="figma-images/hero-person.png" alt="Valencia Photo Guide" loading="eager">
+        </div>
+    </section>
+
+    <!-- BEFORE / AFTER -->
+    <section class="before-after" id="before-after">
+        <h2 class="section-title">Before / After</h2>
+        <div class="ba-grid">
+            <div class="ba-card">
+                <div class="ba-card-header">
+                    <span class="ba-name" style="color:#000">Without the Guide</span>
+                    <span class="ba-sub">What most people shoot</span>
+                </div>
+                <img src="figma-images/before-photo.png" alt="Without the Guide" class="ba-card-photo">
+                <div class="ba-card-footer">
+                    <div class="stats">
+                        <span class="stat" style="color:#4f7f88">&#9825; 26</span>
+                        <span class="stat" style="color:#4f7f88">&#128172; 3</span>
+                        <span class="stat" style="color:#4f7f88">&#10148; 12</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ba-card">
+                <div class="ba-card-header">
+                    <span class="ba-name" style="color:#424656">With the Guide RAKURS</span>
+                </div>
+                <img src="figma-images/hero-person.png" alt="With the Guide" class="ba-card-photo">
+                <div class="ba-card-footer">
+                    <div class="stats">
+                        <span class="stat">&#9825; 503</span>
+                        <span class="stat">&#128172; 111</span>
+                        <span class="stat">&#10148; 28</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="ba-caption">Same place. Different result.<br>It's all about the angle &mdash; small change. Big difference.</p>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits" id="benefits">
+        <div class="benefits-inner">
+            <h2 class="section-title">Why you'll love this</h2>
+            <div class="benefits-content">
+                <div class="benefits-cards">
+                    <div class="benefit-card">
+                        <h3>Get stunning photos in Valencia &mdash; without the &euro;200 price tag</h3>
+                        <p>Most photoshoots here cost &euro;100&ndash;200. With our guide, you get the same iconic angles, hidden spots, and pro tips &mdash; and shoot them yourself, completely free.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>Enjoy Your Trip &mdash; Not the Research</h3>
+                        <p>The average tourist spends 6&ndash;8 hours hunting for the perfect photo spots and angles. With our guide, you skip all that &mdash; every location is ready to go, so you spend that time actually exploring, eating, and living the city.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>100 photos<br>All of them a vibe</h3>
+                        <p>Real talk &mdash; out of 100 shots, maybe 2&ndash;3 don't flop. Our guide gets you to the right spots with the right angles, so your whole camera roll is actually postable &mdash; straight from Valencia's most iconic locations.</p>
+                    </div>
+                </div>
+                <div class="benefits-photo">
+                    <img src="figma-images/benefits-photo.png" alt="Benefits">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how-it-works">
+        <h2 class="section-title">How it works</h2>
+        <div class="steps-row">
+            <div class="step-card">
+                <div class="step-text">
+                    <span class="step-num">Step 1</span>
+                    <span class="step-name">Open the map</span>
+                    <span class="step-desc">You see exact photospots in Valencia</span>
+                </div>
+                <img src="figma-images/step1-map.png" alt="Step 1 - Open the map" class="step-img">
+            </div>
+            <div class="step-card">
+                <div class="step-text">
+                    <span class="step-num">Step 2</span>
+                    <span class="step-name">Stand on this point</span>
+                    <span class="step-desc">Exact point where the photographer should stand</span>
+                </div>
+                <img src="figma-images/step2-photo.png" alt="Step 2 - Stand on this point" class="step-img">
+            </div>
+            <div class="step-card">
+                <div class="step-text">
+                    <span class="step-num">Step 3</span>
+                    <span class="step-name">Golden hour tip</span>
+                    <span class="step-desc">Catch the best light.<br>Shoot at the right time</span>
+                </div>
+                <img src="figma-images/step3-photo.png" alt="Step 3 - Golden hour tip" class="step-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- PERFECT FOR -->
+    <section class="perfect-for" id="perfect-for">
+        <div class="perfect-for-inner">
+            <h2 class="section-title">Perfect for</h2>
+            <div class="gallery-grid">
+                <div class="gallery-row">
+                    <div class="gallery-item">
+                        <img src="figma-images/perfect-solo.png" alt="Solo travelers">
+                        <div class="gallery-label">Solo travelers</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="figma-images/perfect-instagram.png" alt="Instagram & content lovers">
+                        <div class="gallery-label">Instagram &amp; content lovers</div>
+                    </div>
+                </div>
+                <div class="gallery-row">
+                    <div class="gallery-item">
+                        <img src="figma-images/perfect-couples.png" alt="Couples & honeymoons">
+                        <div class="gallery-label">Couples &amp; honeymoons</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="figma-images/perfect-friends.png" alt="Friends traveling together">
+                        <div class="gallery-label">Friends traveling together</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT YOU GET -->
+    <section class="what-you-get" id="what-you-get">
+        <div class="what-you-get-inner">
+            <h2 class="section-title">Here's what you'll get</h2>
+            <div class="wyg-columns">
+                <div class="wyg-col">
+                    <h3>Photo guide</h3>
+                    <div class="wyg-item"><span class="check">&#10003;</span> Interactive map with photo spots</div>
+                    <div class="wyg-item"><span class="check">&#10003;</span> Exact standing point for the photographer</div>
+                    <div class="wyg-item"><span class="check">&#10003;</span> Precise shooting angle for each photo</div>
+                    <div class="wyg-item"><span class="check">&#10003;</span> Example photos to recreate the shot</div>
+                    <div class="wyg-item"><span class="check">&#10003;</span> Best time of day for perfect light</div>
+                </div>
+                <div class="wyg-col">
+                    <h3>Easy access</h3>
+                    <div class="wyg-item"><span class="check">&#10003;</span> Works on all your devices (phone, tablet, and desktop) &mdash; no app needed</div>
+                    <div class="wyg-item"><span class="check">&#10003;</span> Instant access after purchase</div>
+                </div>
+            </div>
+        </div>
+        <img src="figma-images/iphone-mockup.png" alt="Phone preview" class="wyg-iphone">
+    </section>
+
+    <!-- GET THE GUIDE / CTA -->
+    <section class="cta-section" id="get-the-guide">
+        <div class="cta-inner">
+            <h2 class="section-title">Get the guide</h2>
+            <div class="cta-content">
+                <div class="cta-photo-wrap">
+                    <img src="figma-images/cta-photo.png" alt="Valencia">
+                    <div class="cta-photo-banner">One city. One price. Instant access.</div>
+                </div>
+                <div class="cta-card">
+                    <h3 class="cta-title">Valencia Photo Guide</h3>
+                    <div class="cta-features">
+                        <div class="cta-feature"><span class="check-icon">&#10003;</span> Lifetime access to Valencia photo spots</div>
+                        <div class="cta-feature"><span class="check-icon">&#10003;</span> Free updates</div>
+                        <div class="cta-feature"><span class="check-icon">&#10003;</span> Works instantly after payment</div>
+                    </div>
+                    <div class="cta-price-block">
+                        <span class="cta-price-new">&euro;4.99</span>
+                        <span class="cta-price-old">&euro;14,99</span>
+                    </div>
+                    <a href="#" class="cta-buy-btn open-order-modal" data-button-id="cta_buy">
+                        Get it now <span class="price-small">&euro;4.99</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="footer-logo">
+                <img src="figma-images/logo.png" alt="Valencia Photo Guide">
+            </div>
+            <span class="footer-brand">Valencia Photo Guide</span>
+            <div class="footer-contacts">
+                <h4>Contacts:</h4>
+                <p>Valencia</p>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="footer-social-icon" aria-label="Instagram">
+                    <svg width="28" height="28" fill="#006997" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+                <a href="#" class="footer-social-icon" aria-label="Telegram">
+                    <svg width="28" height="28" fill="#006997" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                </a>
+            </div>
+            <span class="footer-copyright">&copy; 2026 All rights reserved</span>
+        </div>
+        <nav class="footer-menu">
+            <a href="#before-after">Before/After</a>
+            <a href="#benefits">Love it</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#what-you-get">What you get</a>
+            <a href="#perfect-for">Perfect for</a>
+        </nav>
+    </footer>
+
+    <!-- ORDER MODAL -->
+    <div class="order-modal-overlay" id="orderModalOverlay" aria-hidden="true">
+        <div class="order-modal">
+            <button type="button" class="order-modal-close" id="orderModalClose" aria-label="Close">&times;</button>
+            <div class="order-modal-content">
+                <h3>Leave your contacts</h3>
+                <p>We'll send you the Valencia Photo Guide (&euro;4.99) and payment link.</p>
+                <form class="order-form" id="orderForm">
+                    <label for="orderName">Name *</label>
+                    <input type="text" id="orderName" name="name" required placeholder="Your name">
+                    <label for="orderEmail">Email *</label>
+                    <input type="email" id="orderEmail" name="email" placeholder="your@email.com">
+                    <label for="orderPhone">Phone</label>
+                    <input type="tel" id="orderPhone" name="phone" placeholder="+34 600 000 000">
+                    <div class="form-row">
+                        <div>
+                            <label for="orderGender">Gender *</label>
+                            <select id="orderGender" name="gender" required>
+                                <option value="">Select</option>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="orderAge">Age *</label>
+                            <select id="orderAge" name="age" required>
+                                <option value="">Select</option>
+                                <script>document.write(Array.from({length:58},(_,i)=>`<option value="${i+18}">${i+18}</option>`).join(''))</script>
+                            </select>
+                        </div>
+                    </div>
+                    <label for="orderCountry">Country *</label>
+                    <select id="orderCountry" name="country" required>
+                        <option value="">Select country</option>
+                        <option value="Albania">Albania</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="Belarus">Belarus</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Canada">Canada</option>
+                        <option value="China">China</option>
+                        <option value="Croatia">Croatia</option>
+                        <option value="Czech Republic">Czech Republic</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Finland">Finland</option>
+                        <option value="France">France</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Greece">Greece</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="India">India</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Latvia">Latvia</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Netherlands">Netherlands</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Serbia">Serbia</option>
+                        <option value="Slovakia">Slovakia</option>
+                        <option value="Slovenia">Slovenia</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="United Arab Emirates">United Arab Emirates</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United States">United States</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <p class="form-message" id="orderFormMessage"></p>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ─── MOBILE MENU ────────────────────────────────
+        const burgerBtn = document.getElementById('burgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            mobileOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            mobileOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        burgerBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        mobileOverlay.addEventListener('click', closeMobileMenu);
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+
+        // ─── ORDER MODAL ────────────────────────────────
+        const orderModalOverlay = document.getElementById('orderModalOverlay');
+        const orderModalClose = document.getElementById('orderModalClose');
+        const orderForm = document.getElementById('orderForm');
+        const orderFormMessage = document.getElementById('orderFormMessage');
+
+        const ORDER_API_URL = 'api/telegram.php';
+        const CLICK_TRACK_URL = 'api/telegram-click.php';
+
+        function sendBuyButtonClick(buttonId) {
+            const fd = new FormData();
+            fd.append('button_id', buttonId || 'unknown');
+            fd.append('user_agent', navigator.userAgent || '');
+            fd.append('referrer', document.referrer || '');
+            if (navigator.sendBeacon && CLICK_TRACK_URL) {
+                navigator.sendBeacon(CLICK_TRACK_URL, fd);
+            } else {
+                fetch(CLICK_TRACK_URL, { method: 'POST', body: fd }).catch(function() {});
+            }
+        }
+
+        document.querySelectorAll('.open-order-modal').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const bid = this.getAttribute('data-button-id') || 'unknown';
+                sendBuyButtonClick(bid);
+                orderFormMessage.textContent = '';
+                orderFormMessage.className = 'form-message';
+                orderFormMessage.style.display = 'none';
+                orderModalOverlay.classList.add('open');
+                orderModalOverlay.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closeOrderModal() {
+            orderModalOverlay.classList.remove('open');
+            orderModalOverlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        orderModalClose.addEventListener('click', closeOrderModal);
+        orderModalOverlay.addEventListener('click', function(e) {
+            if (e.target === orderModalOverlay) closeOrderModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeOrderModal();
+        });
+
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('orderName').value.trim();
+            const email = document.getElementById('orderEmail').value.trim();
+            const phone = document.getElementById('orderPhone').value.trim();
+            const gender = document.getElementById('orderGender').value;
+            const age = document.getElementById('orderAge').value;
+            const country = document.getElementById('orderCountry').value;
+
+            if (!name) { showFormError('Please enter your name.'); return; }
+            if (!email && !phone) { showFormError('Please enter email or phone.'); return; }
+            if (!gender) { showFormError('Please select gender.'); return; }
+            if (!age) { showFormError('Please select age.'); return; }
+            if (!country) { showFormError('Please select country.'); return; }
+
+            orderFormMessage.textContent = 'Sending...';
+            orderFormMessage.className = 'form-message';
+            orderFormMessage.style.display = 'block';
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('phone', phone);
+            formData.append('gender', gender);
+            formData.append('age', age);
+            formData.append('country', country);
+
+            const thankYouWin = window.open('thank-you.html', '_blank', 'noopener,noreferrer');
+
+            fetch(ORDER_API_URL, { method: 'POST', body: formData })
+            .then(res => res.json())
+            .then(data => {
+                if (data.ok) {
+                    orderForm.reset();
+                    closeOrderModal();
+                } else {
+                    if (thankYouWin && !thankYouWin.closed) thankYouWin.close();
+                    showFormError(data.error || 'Something went wrong. Try again.');
+                }
+            })
+            .catch(() => {
+                if (thankYouWin && !thankYouWin.closed) thankYouWin.close();
+                showFormError('Network error. Try again.');
+            });
+        });
+
+        function showFormError(msg) {
+            orderFormMessage.textContent = msg;
+            orderFormMessage.className = 'form-message error';
+        }
+
+        // ─── SMOOTH SCROLL ──────────────────────────────
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.classList.contains('open-order-modal')) return;
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── SCROLL ANIMATIONS ──────────────────────────
+        const animObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    animObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+        document.querySelectorAll('.benefit-card, .step-card, .gallery-item, .wyg-col, .ba-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            animObserver.observe(el);
+        });
+    </script>
+</body>
+</html>
